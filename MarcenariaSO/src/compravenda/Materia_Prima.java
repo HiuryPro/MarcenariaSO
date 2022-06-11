@@ -11,6 +11,6 @@ package compravenda;
  */
 public class Materia_Prima {
     public String nome;
-    public int precoUnit;
+    public float precoUnit;
     public int quantEstoque;
 }

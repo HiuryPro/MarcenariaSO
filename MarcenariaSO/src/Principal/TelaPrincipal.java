@@ -5,8 +5,16 @@
  */
 package Principal;
 
+import compravenda.Compra;
+import compravenda.Materia_Prima;
+import compravenda.Movel;
+import compravenda.Venda;
 import java.awt.Toolkit;
+import java.util.ArrayList;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+import pessoa.Cliente;
+import pessoa.Fornecedor;
 
 /**
  *
@@ -14,6 +22,17 @@ import javax.swing.ImageIcon;
  */
 public class TelaPrincipal extends javax.swing.JFrame {
 
+    
+    
+    ArrayList<Fornecedor> fornecedores = new ArrayList<Fornecedor>();
+    ArrayList<Materia_Prima> materiasprimas = new ArrayList<Materia_Prima>();
+    ArrayList<Movel> moveis = new ArrayList<Movel>();
+    ArrayList<Cliente> clientes = new ArrayList<Cliente>();
+    ArrayList<Venda> vendas = new ArrayList<Venda>();
+    ArrayList<Compra> compras = new ArrayList<Compra>();
+
+    
+    public String teste = "deu ruim";
     /**
      * Creates new form TelaPrincipal
      */
@@ -121,23 +140,27 @@ public class TelaPrincipal extends javax.swing.JFrame {
         EstoTela estoq = new EstoTela();
         tela.add(estoq);
         estoq.setVisible(true);
+       // JOptionPane.showMessageDialog(null, fornecedores.get(0).getNome());
+       // JOptionPane.showMessageDialog(null, clientes.get(0).getNome());
+       // JOptionPane.showMessageDialog(null, teste);
+       JOptionPane.showMessageDialog(null, materiasprimas.get(0).nome);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void materiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_materiaActionPerformed
-        MatMov estoq = new MatMov();
+        MatMov estoq = new MatMov(this, materiasprimas, moveis);
         tela.add(estoq);
         estoq.setVisible(true);// TODO add your handling code here:
     }//GEN-LAST:event_materiaActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        FornTela estoq = new FornTela();
+        FornTela estoq = new FornTela(this, fornecedores);
         tela.add(estoq);
         estoq.setVisible(true);
 // // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        ClieTela estoq = new ClieTela();
+        ClieTela estoq = new ClieTela(this, clientes);
         tela.add(estoq);
         estoq.setVisible(true);
 // TODO add your handling code here:

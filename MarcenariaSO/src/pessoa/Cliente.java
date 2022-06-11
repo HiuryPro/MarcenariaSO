@@ -9,6 +9,8 @@ package pessoa;
  *
  * @author Hiury
  */
-public class Cliente {
+public class Cliente extends Pessoa {
+    public float desconto;
+    public String descricao;
     
 }

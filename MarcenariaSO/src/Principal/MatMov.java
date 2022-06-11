@@ -5,6 +5,10 @@
  */
 package Principal;
 
+import compravenda.Materia_Prima;
+import compravenda.Movel;
+import java.util.ArrayList;
+
 /**
  *
  * @author Hiury
@@ -14,9 +18,22 @@ public class MatMov extends javax.swing.JInternalFrame {
     /**
      * Creates new form Estoque
      */
-    public MatMov() {
+    ArrayList<Materia_Prima> materias = new ArrayList<Materia_Prima>();
+    ArrayList<Movel> moveis = new ArrayList<Movel>();
+    TelaPrincipal teste;
+    CadMP materiaprima;
+    CadMov moveltela;
+    
+
+    public MatMov(TelaPrincipal vai, ArrayList<Materia_Prima> mat, ArrayList<Movel> mov) {
         initComponents();
-       
+        teste = vai;
+        materias = mat;
+        moveis = mov;
+        materiaprima = new CadMP(teste, materias);
+        moveltela = new CadMov(teste, moveis);
+        
+
     }
 
     /**
@@ -28,28 +45,33 @@ public class MatMov extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        estoque1 = new javax.swing.JButton();
-        jDesktopPane1 = new javax.swing.JDesktopPane();
+        matP = new javax.swing.JButton();
+        tela3 = new javax.swing.JDesktopPane();
         estoque2 = new javax.swing.JButton();
 
         setClosable(true);
         setTitle("Cadastro de Matéria e Móveis");
         setPreferredSize(new java.awt.Dimension(1180, 447));
 
-        estoque1.setBackground(new java.awt.Color(255, 168, 0));
-        estoque1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        estoque1.setText("Matéria Prima");
+        matP.setBackground(new java.awt.Color(255, 168, 0));
+        matP.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        matP.setText("Matéria Prima");
+        matP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                matPActionPerformed(evt);
+            }
+        });
 
-        jDesktopPane1.setPreferredSize(new java.awt.Dimension(800, 408));
+        tela3.setPreferredSize(new java.awt.Dimension(800, 408));
 
-        javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
-        jDesktopPane1.setLayout(jDesktopPane1Layout);
-        jDesktopPane1Layout.setHorizontalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout tela3Layout = new javax.swing.GroupLayout(tela3);
+        tela3.setLayout(tela3Layout);
+        tela3Layout.setHorizontalGroup(
+            tela3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 800, Short.MAX_VALUE)
         );
-        jDesktopPane1Layout.setVerticalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        tela3Layout.setVerticalGroup(
+            tela3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 408, Short.MAX_VALUE)
         );
 
@@ -63,17 +85,17 @@ public class MatMov extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(estoque1, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(matP, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(estoque2, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addComponent(jDesktopPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(tela3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jDesktopPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(tela3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addComponent(estoque1, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(matP, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
                         .addComponent(estoque2, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -82,10 +104,15 @@ public class MatMov extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void matPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_matPActionPerformed
+        tela3.add(materiaprima);
+        materiaprima.setVisible(true);
+    }//GEN-LAST:event_matPActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton estoque1;
     private javax.swing.JButton estoque2;
-    private javax.swing.JDesktopPane jDesktopPane1;
+    private javax.swing.JButton matP;
+    private javax.swing.JDesktopPane tela3;
     // End of variables declaration//GEN-END:variables
 }

@@ -39,6 +39,11 @@ public class EstoTela extends javax.swing.JInternalFrame {
 
         estoque1.setBackground(new java.awt.Color(255, 168, 0));
         estoque1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        estoque1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                estoque1ActionPerformed(evt);
+            }
+        });
 
         rel.setBackground(new java.awt.Color(255, 168, 0));
         rel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -88,6 +93,10 @@ public class EstoTela extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void estoque1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_estoque1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_estoque1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

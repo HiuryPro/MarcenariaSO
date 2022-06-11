@@ -19,17 +19,9 @@ public class Fornecedor extends Pessoa {
     public float frete;
     public int quantidadeF;
     public float precoF;
-
-    
-    
-    
-    
-    
-    public void cadastraMP(Materia_Prima materias) {
-
-        materiasPrimas.add(materias);
-
-    }
+    public int contador = 0;
+    public String inscE;
+    public String descricao;
 
     public ArrayList<Materia_Prima> getMateriasPrimas() {
 

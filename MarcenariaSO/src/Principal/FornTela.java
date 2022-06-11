@@ -5,6 +5,9 @@
  */
 package Principal;
 
+import java.util.ArrayList;
+import pessoa.Fornecedor;
+
 /**
  *
  * @author Hiury
@@ -14,10 +17,17 @@ public class FornTela extends javax.swing.JInternalFrame {
     /**
      * Creates new form Estoque
      */
-    public FornTela() {
-        initComponents();
+    ArrayList<Fornecedor> fornecedores = new ArrayList<Fornecedor>();
+    TelaPrincipal teste2;
+    CadForn tela;
+
+    public FornTela(TelaPrincipal vaiM, ArrayList<Fornecedor> forn) {
+        initComponents(); 
         estoque1.setText("<html> Fornecedor  Matéria Prima<html>");
         estoque2.setText("<html> Fornecedor  Dados <html>");
+        teste2 = vaiM;
+        fornecedores = forn;
+        tela = new CadForn(teste2, fornecedores);
     }
 
     /**
@@ -31,7 +41,7 @@ public class FornTela extends javax.swing.JInternalFrame {
 
         estoque = new javax.swing.JButton();
         estoque2 = new javax.swing.JButton();
-        jDesktopPane1 = new javax.swing.JDesktopPane();
+        tela2 = new javax.swing.JDesktopPane();
         estoque1 = new javax.swing.JButton();
 
         setClosable(true);
@@ -42,6 +52,11 @@ public class FornTela extends javax.swing.JInternalFrame {
         estoque.setBackground(new java.awt.Color(255, 168, 0));
         estoque.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         estoque.setText("Fornecedor");
+        estoque.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                estoqueActionPerformed(evt);
+            }
+        });
 
         estoque2.setBackground(new java.awt.Color(255, 168, 0));
         estoque2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -52,16 +67,16 @@ public class FornTela extends javax.swing.JInternalFrame {
             }
         });
 
-        jDesktopPane1.setPreferredSize(new java.awt.Dimension(800, 408));
+        tela2.setPreferredSize(new java.awt.Dimension(800, 408));
 
-        javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
-        jDesktopPane1.setLayout(jDesktopPane1Layout);
-        jDesktopPane1Layout.setHorizontalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout tela2Layout = new javax.swing.GroupLayout(tela2);
+        tela2.setLayout(tela2Layout);
+        tela2Layout.setHorizontalGroup(
+            tela2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 800, Short.MAX_VALUE)
         );
-        jDesktopPane1Layout.setVerticalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        tela2Layout.setVerticalGroup(
+            tela2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
@@ -83,13 +98,13 @@ public class FornTela extends javax.swing.JInternalFrame {
                     .addComponent(estoque, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(estoque1, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(estoque2, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(tela2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jDesktopPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 410, Short.MAX_VALUE)
+                    .addComponent(tela2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 410, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(estoque, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -111,11 +126,17 @@ public class FornTela extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_estoque2ActionPerformed
 
+    private void estoqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_estoqueActionPerformed
+
+        tela2.add(tela);
+        tela.setVisible(true);
+    }//GEN-LAST:event_estoqueActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton estoque;
     private javax.swing.JButton estoque1;
     private javax.swing.JButton estoque2;
-    private javax.swing.JDesktopPane jDesktopPane1;
+    private javax.swing.JDesktopPane tela2;
     // End of variables declaration//GEN-END:variables
 }

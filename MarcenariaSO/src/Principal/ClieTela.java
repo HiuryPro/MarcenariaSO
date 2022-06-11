@@ -5,6 +5,10 @@
  */
 package Principal;
 
+import java.util.ArrayList;
+import pessoa.Cliente;
+import pessoa.Fornecedor;
+
 /**
  *
  * @author Hiury
@@ -14,9 +18,16 @@ public class ClieTela extends javax.swing.JInternalFrame {
     /**
      * Creates new form Estoque
      */
-    public ClieTela() {
+    CadCliente tela;
+    ArrayList<Cliente> clientes = new ArrayList<Cliente>();
+    TelaPrincipal teste2;
+
+    public ClieTela(TelaPrincipal vaiM, ArrayList<Cliente> clien) {
         initComponents();
-       
+        clientes = clien;
+        teste2 = vaiM;
+        tela = new CadCliente(teste2, clientes);
+
     }
 
     /**
@@ -29,7 +40,7 @@ public class ClieTela extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         estoque1 = new javax.swing.JButton();
-        jDesktopPane1 = new javax.swing.JDesktopPane();
+        telaC = new javax.swing.JDesktopPane();
         estoque2 = new javax.swing.JButton();
 
         setClosable(true);
@@ -38,17 +49,22 @@ public class ClieTela extends javax.swing.JInternalFrame {
         estoque1.setBackground(new java.awt.Color(255, 168, 0));
         estoque1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         estoque1.setText("Cliente");
+        estoque1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                estoque1ActionPerformed(evt);
+            }
+        });
 
-        jDesktopPane1.setPreferredSize(new java.awt.Dimension(800, 408));
+        telaC.setPreferredSize(new java.awt.Dimension(800, 408));
 
-        javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
-        jDesktopPane1.setLayout(jDesktopPane1Layout);
-        jDesktopPane1Layout.setHorizontalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout telaCLayout = new javax.swing.GroupLayout(telaC);
+        telaC.setLayout(telaCLayout);
+        telaCLayout.setHorizontalGroup(
+            telaCLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 800, Short.MAX_VALUE)
         );
-        jDesktopPane1Layout.setVerticalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        telaCLayout.setVerticalGroup(
+            telaCLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
@@ -69,7 +85,7 @@ public class ClieTela extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(estoque2, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(estoque1, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(telaC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -79,7 +95,7 @@ public class ClieTela extends javax.swing.JInternalFrame {
                         .addGap(203, 203, 203)
                         .addComponent(estoque2, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(estoque1, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jDesktopPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(telaC, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -90,10 +106,15 @@ public class ClieTela extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_estoque2ActionPerformed
 
+    private void estoque1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_estoque1ActionPerformed
+        telaC.add(tela);
+        tela.setVisible(true);
+    }//GEN-LAST:event_estoque1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton estoque1;
     private javax.swing.JButton estoque2;
-    private javax.swing.JDesktopPane jDesktopPane1;
+    private javax.swing.JDesktopPane telaC;
     // End of variables declaration//GEN-END:variables
 }
