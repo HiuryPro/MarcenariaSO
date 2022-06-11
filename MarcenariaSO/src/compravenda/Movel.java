@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package materiais;
+package compravenda;
 
 /**
  *
  * @author Hiury
  */
-public class Madeira {
+public class Movel {
     
 }

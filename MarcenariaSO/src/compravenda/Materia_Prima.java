@@ -3,12 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package transações;
+package compravenda;
 
 /**
  *
  * @author Hiury
  */
-public class Compra {
-    
+public class Materia_Prima {
+    public String nome;
+    public int precoUnit;
+    public int quantEstoque;
 }
