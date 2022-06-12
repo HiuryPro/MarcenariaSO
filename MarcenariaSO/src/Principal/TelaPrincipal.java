@@ -22,8 +22,6 @@ import pessoa.Fornecedor;
  */
 public class TelaPrincipal extends javax.swing.JFrame {
 
-    
-    
     ArrayList<Fornecedor> fornecedores = new ArrayList<Fornecedor>();
     ArrayList<Materia_Prima> materiasprimas = new ArrayList<Materia_Prima>();
     ArrayList<Movel> moveis = new ArrayList<Movel>();
@@ -31,8 +29,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
     ArrayList<Venda> vendas = new ArrayList<Venda>();
     ArrayList<Compra> compras = new ArrayList<Compra>();
 
-    
     public String teste = "deu ruim";
+
     /**
      * Creates new form TelaPrincipal
      */
@@ -137,13 +135,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        EstoTela estoq = new EstoTela();
+
+        EstoqueTela estoq = new EstoqueTela(this, materiasprimas);
         tela.add(estoq);
         estoq.setVisible(true);
-       // JOptionPane.showMessageDialog(null, fornecedores.get(0).getNome());
-       // JOptionPane.showMessageDialog(null, clientes.get(0).getNome());
-       // JOptionPane.showMessageDialog(null, teste);
-       JOptionPane.showMessageDialog(null, materiasprimas.get(0).nome);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void materiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_materiaActionPerformed
@@ -160,7 +155,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        ClieTela estoq = new ClieTela(this, clientes);
+        ClieteTela estoq = new ClieteTela(this, clientes);
         tela.add(estoq);
         estoq.setVisible(true);
 // TODO add your handling code here:

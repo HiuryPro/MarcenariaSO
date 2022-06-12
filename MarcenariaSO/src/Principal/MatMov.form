@@ -96,6 +96,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="M&#xf3;veis"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="estoque2ActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

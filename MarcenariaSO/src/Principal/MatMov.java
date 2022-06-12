@@ -22,16 +22,16 @@ public class MatMov extends javax.swing.JInternalFrame {
     ArrayList<Movel> moveis = new ArrayList<Movel>();
     TelaPrincipal teste;
     CadMP materiaprima;
-    CadMov moveltela;
+    CadMov movelTela;
     
 
-    public MatMov(TelaPrincipal vai, ArrayList<Materia_Prima> mat, ArrayList<Movel> mov) {
+    public MatMov(TelaPrincipal vai, ArrayList<Materia_Prima> mp, ArrayList<Movel> mov) {
         initComponents();
         teste = vai;
-        materias = mat;
+        materias = mp;
         moveis = mov;
         materiaprima = new CadMP(teste, materias);
-        moveltela = new CadMov(teste, moveis);
+        movelTela = new CadMov(teste, materias, moveis);
         
 
     }
@@ -78,6 +78,11 @@ public class MatMov extends javax.swing.JInternalFrame {
         estoque2.setBackground(new java.awt.Color(255, 168, 0));
         estoque2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         estoque2.setText("Móveis");
+        estoque2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                estoque2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -108,6 +113,13 @@ public class MatMov extends javax.swing.JInternalFrame {
         tela3.add(materiaprima);
         materiaprima.setVisible(true);
     }//GEN-LAST:event_matPActionPerformed
+
+    private void estoque2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_estoque2ActionPerformed
+       tela3.add(movelTela);
+       movelTela.setVisible(true);
+
+// TODO add your handling code here:
+    }//GEN-LAST:event_estoque2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

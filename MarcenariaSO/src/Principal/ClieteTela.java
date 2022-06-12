@@ -13,20 +13,22 @@ import pessoa.Fornecedor;
  *
  * @author Hiury
  */
-public class ClieTela extends javax.swing.JInternalFrame {
+public class ClieteTela extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form Estoque
      */
     CadCliente tela;
+    DadosCliente tela2;
     ArrayList<Cliente> clientes = new ArrayList<Cliente>();
     TelaPrincipal teste2;
 
-    public ClieTela(TelaPrincipal vaiM, ArrayList<Cliente> clien) {
+    public ClieteTela(TelaPrincipal vaiM, ArrayList<Cliente> clien) {
         initComponents();
         clientes = clien;
         teste2 = vaiM;
         tela = new CadCliente(teste2, clientes);
+   
 
     }
 
@@ -103,7 +105,12 @@ public class ClieTela extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void estoque2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_estoque2ActionPerformed
-        // TODO add your handling code here:
+             tela2 = new DadosCliente(teste2, clientes);
+             telaC.add(tela2);
+             tela2.setVisible(true);
+
+
+// TODO add your handling code here:
     }//GEN-LAST:event_estoque2ActionPerformed
 
     private void estoque1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_estoque1ActionPerformed

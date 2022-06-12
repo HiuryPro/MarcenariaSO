@@ -5,19 +5,29 @@
  */
 package Principal;
 
+import compravenda.Materia_Prima;
+import java.util.ArrayList;
+
 /**
  *
  * @author Hiury
  */
-public class EstoTela extends javax.swing.JInternalFrame {
+public class EstoqueTela extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form Estoque
      */
-    public EstoTela() {
+    EstoqueMP estoqueMP;
+    ArrayList<Materia_Prima> materias = new ArrayList<Materia_Prima>();
+    TelaPrincipal teste2;
+
+    public EstoqueTela(TelaPrincipal vai, ArrayList<Materia_Prima> materia) {
         initComponents();
         estoque1.setText("<html> Estoque <> Matéria Prima<html>");
-          estoque2.setText("<html> Estoque <> Móveis<html>");
+        estoque2.setText("<html> Estoque <> Móveis<html>");
+
+        teste2 = vai;
+        materias = materia;
     }
 
     /**
@@ -31,7 +41,7 @@ public class EstoTela extends javax.swing.JInternalFrame {
 
         estoque1 = new javax.swing.JButton();
         rel = new javax.swing.JButton();
-        jDesktopPane1 = new javax.swing.JDesktopPane();
+        telaE = new javax.swing.JDesktopPane();
         estoque2 = new javax.swing.JButton();
 
         setClosable(true);
@@ -49,22 +59,27 @@ public class EstoTela extends javax.swing.JInternalFrame {
         rel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         rel.setText("Relatório");
 
-        jDesktopPane1.setPreferredSize(new java.awt.Dimension(800, 408));
+        telaE.setPreferredSize(new java.awt.Dimension(800, 408));
 
-        javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
-        jDesktopPane1.setLayout(jDesktopPane1Layout);
-        jDesktopPane1Layout.setHorizontalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout telaELayout = new javax.swing.GroupLayout(telaE);
+        telaE.setLayout(telaELayout);
+        telaELayout.setHorizontalGroup(
+            telaELayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 800, Short.MAX_VALUE)
         );
-        jDesktopPane1Layout.setVerticalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        telaELayout.setVerticalGroup(
+            telaELayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 408, Short.MAX_VALUE)
         );
 
         estoque2.setBackground(new java.awt.Color(255, 168, 0));
         estoque2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         estoque2.setText("jButton2");
+        estoque2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                estoque2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -75,13 +90,13 @@ public class EstoTela extends javax.swing.JInternalFrame {
                     .addComponent(estoque1, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(estoque2, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(rel, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(telaE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jDesktopPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(telaE, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(estoque1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
@@ -95,14 +110,20 @@ public class EstoTela extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void estoque1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_estoque1ActionPerformed
-        // TODO add your handling code here:
+        estoqueMP = new EstoqueMP(teste2, materias);
+        telaE.add(estoqueMP);
+        estoqueMP.setVisible(true);// TODO add your handling code here:
     }//GEN-LAST:event_estoque1ActionPerformed
+
+    private void estoque2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_estoque2ActionPerformed
+                     
+    }//GEN-LAST:event_estoque2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton estoque1;
     private javax.swing.JButton estoque2;
-    private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JButton rel;
+    private javax.swing.JDesktopPane telaE;
     // End of variables declaration//GEN-END:variables
 }

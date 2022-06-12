@@ -13,4 +13,5 @@ public class Materia_Prima {
     public String nome;
     public float precoUnit;
     public int quantEstoque;
+    public String descricao;
 }
