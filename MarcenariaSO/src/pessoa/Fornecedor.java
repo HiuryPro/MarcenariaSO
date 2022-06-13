@@ -14,18 +14,15 @@ import java.util.ArrayList;
  */
 public class Fornecedor extends Pessoa {
 
-    private ArrayList<Materia_Prima> materiasPrimas = new ArrayList<Materia_Prima>();
+    public ArrayList<String> nomeMP = new ArrayList<String>();
+    public ArrayList<String> precoF = new ArrayList<String>(); // Na hora de fazer a venda transformo eles em float
+    public ArrayList<String> frete = new ArrayList<String>();  // Na hora de fazer a venda transformo eles em float
+    
     public String cnpj;
-    public float frete;
     public int quantidadeF;
-    public float precoF;
     public int contador = 0;
     public String inscE;
     public String descricao;
 
-    public ArrayList<Materia_Prima> getMateriasPrimas() {
-
-        return materiasPrimas;
-
-    }
+    
 }

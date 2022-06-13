@@ -153,7 +153,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_materiaActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        FornTela estoq = new FornTela(this, fornecedores);
+        FornTela estoq = new FornTela(this, fornecedores, materiasprimas);
         tela.add(estoq);
         estoq.setVisible(true);
 // // TODO add your handling code here:

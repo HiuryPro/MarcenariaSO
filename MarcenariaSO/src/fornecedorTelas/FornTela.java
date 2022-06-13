@@ -6,6 +6,7 @@
 package fornecedorTelas;
 
 import Principal.TelaPrincipal;
+import compravenda.Materia_Prima;
 import java.util.ArrayList;
 import pessoa.Fornecedor;
 
@@ -19,16 +20,19 @@ public class FornTela extends javax.swing.JInternalFrame {
      * Creates new form Estoque
      */
     ArrayList<Fornecedor> fornecedores = new ArrayList<Fornecedor>();
+    ArrayList<Materia_Prima> materiasP = new ArrayList<Materia_Prima>();
     TelaPrincipal teste2;
-    CadForn tela;
+    CadForn telaF;
+    CadFornMP telaFMP;
 
-    public FornTela(TelaPrincipal vaiM, ArrayList<Fornecedor> forn) {
-        initComponents(); 
+    public FornTela(TelaPrincipal vaiM, ArrayList<Fornecedor> forn, ArrayList<Materia_Prima> mP) {
+        initComponents();
         estoque1.setText("<html> Fornecedor  Matéria Prima<html>");
         estoque2.setText("<html> Fornecedor  Dados <html>");
         teste2 = vaiM;
         fornecedores = forn;
-        tela = new CadForn(teste2, fornecedores);
+        materiasP = mP;
+
     }
 
     /**
@@ -120,7 +124,9 @@ public class FornTela extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void estoque1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_estoque1ActionPerformed
-        // TODO add your handling code here:
+        telaFMP = new CadFornMP(teste2, fornecedores, materiasP);
+        tela2.add(telaFMP);
+        telaFMP.setVisible(true);        // TODO add your handling code here:
     }//GEN-LAST:event_estoque1ActionPerformed
 
     private void estoque2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_estoque2ActionPerformed
@@ -128,9 +134,9 @@ public class FornTela extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_estoque2ActionPerformed
 
     private void estoqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_estoqueActionPerformed
-
-        tela2.add(tela);
-        tela.setVisible(true);
+        telaF = new CadForn(teste2, fornecedores);
+        tela2.add(telaF);
+        telaF.setVisible(true);
     }//GEN-LAST:event_estoqueActionPerformed
 
 

@@ -19,7 +19,7 @@ public class Compra extends Transacao {
    
     public void CalculaPrecoT(int i) {
         
-       this.precoTotal = fornecedores.get(i).quantidadeF + fornecedores.get(i).precoF + fornecedores.get(i).frete;
+      // this.precoTotal = fornecedores.get(i).quantidadeF + fornecedores.get(i).precoF + fornecedores.get(i).frete;
        
     }
     
