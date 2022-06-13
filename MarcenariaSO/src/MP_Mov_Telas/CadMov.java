@@ -79,6 +79,7 @@ public class CadMov extends javax.swing.JInternalFrame {
 
         if (resultado == JOptionPane.YES_OPTION) {
             salvaMovel();
+            tP.moveis = this.moveis;
 
         } else {
 
@@ -123,9 +124,16 @@ public class CadMov extends javax.swing.JInternalFrame {
             Class[] types = new Class [] {
                 java.lang.String.class, java.lang.Integer.class, java.lang.Float.class
             };
+            boolean[] canEdit = new boolean [] {
+                true, true, false
+            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
         jScrollPane1.setViewportView(tabela);
@@ -237,7 +245,7 @@ public class CadMov extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void CadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CadActionPerformed
-
+        Confirma();
     }//GEN-LAST:event_CadActionPerformed
 
     private void adicionaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adicionaActionPerformed

@@ -31,7 +31,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="estoque" min="-2" pref="370" max="-2" attributes="0"/>
                   <Component id="estoque1" min="-2" pref="370" max="-2" attributes="0"/>
-                  <Component id="estoque2" min="-2" pref="370" max="-2" attributes="0"/>
+                  <Component id="fornDados" min="-2" pref="370" max="-2" attributes="0"/>
               </Group>
               <Component id="tela2" min="-2" max="-2" attributes="0"/>
           </Group>
@@ -50,7 +50,7 @@
                               <Component id="estoque1" min="-2" pref="137" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <Component id="estoque2" min="-2" pref="137" max="-2" attributes="0"/>
+                      <Component id="fornDados" min="-2" pref="137" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
@@ -73,7 +73,7 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="estoqueActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="estoque2">
+    <Component class="javax.swing.JButton" name="fornDados">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="0" green="a8" red="ff" type="rgb"/>
@@ -84,7 +84,7 @@
         <Property name="text" type="java.lang.String" value="Relat&#xf3;rio"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="estoque2ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="fornDadosActionPerformed"/>
       </Events>
     </Component>
     <Container class="javax.swing.JDesktopPane" name="tela2">

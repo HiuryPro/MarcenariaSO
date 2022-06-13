@@ -24,11 +24,12 @@ public class FornTela extends javax.swing.JInternalFrame {
     TelaPrincipal teste2;
     CadForn telaF;
     CadFornMP telaFMP;
+    DadosFornecedor telaFD;
 
     public FornTela(TelaPrincipal vaiM, ArrayList<Fornecedor> forn, ArrayList<Materia_Prima> mP) {
         initComponents();
         estoque1.setText("<html> Fornecedor  Matéria Prima<html>");
-        estoque2.setText("<html> Fornecedor  Dados <html>");
+        fornDados.setText("<html> Fornecedor  Dados <html>");
         teste2 = vaiM;
         fornecedores = forn;
         materiasP = mP;
@@ -45,7 +46,7 @@ public class FornTela extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         estoque = new javax.swing.JButton();
-        estoque2 = new javax.swing.JButton();
+        fornDados = new javax.swing.JButton();
         tela2 = new javax.swing.JDesktopPane();
         estoque1 = new javax.swing.JButton();
 
@@ -63,12 +64,12 @@ public class FornTela extends javax.swing.JInternalFrame {
             }
         });
 
-        estoque2.setBackground(new java.awt.Color(255, 168, 0));
-        estoque2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        estoque2.setText("Relatório");
-        estoque2.addActionListener(new java.awt.event.ActionListener() {
+        fornDados.setBackground(new java.awt.Color(255, 168, 0));
+        fornDados.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        fornDados.setText("Relatório");
+        fornDados.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                estoque2ActionPerformed(evt);
+                fornDadosActionPerformed(evt);
             }
         });
 
@@ -102,7 +103,7 @@ public class FornTela extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(estoque, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(estoque1, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(estoque2, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(fornDados, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addComponent(tela2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
@@ -116,7 +117,7 @@ public class FornTela extends javax.swing.JInternalFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(136, 136, 136)
                                 .addComponent(estoque1, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addComponent(estoque2, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(fornDados, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -129,9 +130,11 @@ public class FornTela extends javax.swing.JInternalFrame {
         telaFMP.setVisible(true);        // TODO add your handling code here:
     }//GEN-LAST:event_estoque1ActionPerformed
 
-    private void estoque2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_estoque2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_estoque2ActionPerformed
+    private void fornDadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fornDadosActionPerformed
+        telaFD = new DadosFornecedor(teste2, fornecedores);
+        tela2.add(telaFD);
+        telaFD.setVisible(true);    // TODO add your handling code here:
+    }//GEN-LAST:event_fornDadosActionPerformed
 
     private void estoqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_estoqueActionPerformed
         telaF = new CadForn(teste2, fornecedores);
@@ -143,7 +146,7 @@ public class FornTela extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton estoque;
     private javax.swing.JButton estoque1;
-    private javax.swing.JButton estoque2;
+    private javax.swing.JButton fornDados;
     private javax.swing.JDesktopPane tela2;
     // End of variables declaration//GEN-END:variables
 }

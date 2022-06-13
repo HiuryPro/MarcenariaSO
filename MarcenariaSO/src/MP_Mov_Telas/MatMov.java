@@ -26,16 +26,12 @@ public class MatMov extends javax.swing.JInternalFrame {
     TelaPrincipal teste;
     CadMP materiaprima;
     CadMov movelTela;
-    
 
     public MatMov(TelaPrincipal vai, ArrayList<Materia_Prima> mp, ArrayList<Movel> mov) {
         initComponents();
         teste = vai;
         materias = mp;
         moveis = mov;
-        materiaprima = new CadMP(teste, materias);
-        movelTela = new CadMov(teste, materias, moveis);
-        
 
     }
 
@@ -113,13 +109,15 @@ public class MatMov extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void matPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_matPActionPerformed
+        materiaprima = new CadMP(teste, materias);
         tela3.add(materiaprima);
         materiaprima.setVisible(true);
     }//GEN-LAST:event_matPActionPerformed
 
     private void estoque2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_estoque2ActionPerformed
-       tela3.add(movelTela);
-       movelTela.setVisible(true);
+        movelTela = new CadMov(teste, materias, moveis);
+        tela3.add(movelTela);
+        movelTela.setVisible(true);
 
 // TODO add your handling code here:
     }//GEN-LAST:event_estoque2ActionPerformed

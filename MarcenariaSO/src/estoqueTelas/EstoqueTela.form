@@ -28,7 +28,7 @@
           <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="estoque1" min="-2" pref="370" max="-2" attributes="0"/>
-                  <Component id="estoque2" min="-2" pref="370" max="-2" attributes="0"/>
+                  <Component id="dadosMoveis" min="-2" pref="370" max="-2" attributes="0"/>
                   <Component id="rel" min="-2" pref="370" max="-2" attributes="0"/>
               </Group>
               <Component id="telaE" min="-2" max="-2" attributes="0"/>
@@ -43,7 +43,7 @@
                   <Group type="102" attributes="0">
                       <Component id="estoque1" min="-2" pref="135" max="-2" attributes="0"/>
                       <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                      <Component id="estoque2" min="-2" pref="135" max="-2" attributes="0"/>
+                      <Component id="dadosMoveis" min="-2" pref="135" max="-2" attributes="0"/>
                       <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                       <Component id="rel" min="-2" pref="135" max="-2" attributes="0"/>
                   </Group>
@@ -98,7 +98,7 @@
         </DimensionLayout>
       </Layout>
     </Container>
-    <Component class="javax.swing.JButton" name="estoque2">
+    <Component class="javax.swing.JButton" name="dadosMoveis">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="0" green="a8" red="ff" type="rgb"/>
@@ -109,7 +109,7 @@
         <Property name="text" type="java.lang.String" value="jButton2"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="estoque2ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="dadosMoveisActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

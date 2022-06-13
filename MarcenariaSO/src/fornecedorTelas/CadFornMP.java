@@ -51,7 +51,7 @@ public class CadFornMP extends javax.swing.JInternalFrame {
     public void pegaMP() {
         cbMateriaP.addItem(" ");
 
-        for (int i = 0; i < fornecedores.size(); i++) {
+        for (int i = 0; i < materiasPrimas.size(); i++) {
             cbMateriaP.addItem(materiasPrimas.get(i).nome);
 
         }
@@ -119,6 +119,8 @@ public class CadFornMP extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         frete = new javax.swing.JTextField();
+
+        setClosable(true);
 
         tabela.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

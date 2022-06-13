@@ -265,6 +265,7 @@ public class CadForn extends javax.swing.JInternalFrame {
         fornecedores.get(count).cnpj = cnpjField.getText().replaceAll("[^0-9]+", "");
         fornecedores.get(count).setEstado(String.valueOf(estadoCb.getSelectedItem()));
         fornecedores.get(count).setCidade(cidade.getText());
+        fornecedores.get(count).setEmail(email.getText());
         fornecedores.get(count).inscE = inscEField.getText().replaceAll("[^0-9]+", "");
         fornecedores.get(count).setTelefone(telefoneField.getText().replaceAll("[^0-9]+", ""));
         fornecedores.get(count).descricao = descricaoTA.getText();

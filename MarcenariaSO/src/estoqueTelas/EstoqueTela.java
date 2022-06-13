@@ -8,6 +8,7 @@ package estoqueTelas;
 import Principal.TelaPrincipal;
 import estoqueTelas.EstoqueMP;
 import compravenda.Materia_Prima;
+import compravenda.Movel;
 import java.util.ArrayList;
 
 /**
@@ -20,16 +21,21 @@ public class EstoqueTela extends javax.swing.JInternalFrame {
      * Creates new form Estoque
      */
     EstoqueMP estoqueMP;
-    ArrayList<Materia_Prima> materias = new ArrayList<Materia_Prima>();
-    TelaPrincipal teste2;
+    DadosMovel telaDM;
 
-    public EstoqueTela(TelaPrincipal vai, ArrayList<Materia_Prima> materia) {
+    ArrayList<Materia_Prima> materias = new ArrayList<Materia_Prima>();
+    ArrayList<Movel> moveis = new ArrayList<Movel>();
+
+    TelaPrincipal tP;
+
+    public EstoqueTela(TelaPrincipal tP, ArrayList<Materia_Prima> materia, ArrayList<Movel> mov) {
         initComponents();
         estoque1.setText("<html> Estoque <> Matéria Prima<html>");
-        estoque2.setText("<html> Estoque <> Móveis<html>");
+        dadosMoveis.setText("<html> Dados <> Móveis<html>");
 
-        teste2 = vai;
+        this.tP = tP;
         materias = materia;
+        moveis = mov;
     }
 
     /**
@@ -44,7 +50,7 @@ public class EstoqueTela extends javax.swing.JInternalFrame {
         estoque1 = new javax.swing.JButton();
         rel = new javax.swing.JButton();
         telaE = new javax.swing.JDesktopPane();
-        estoque2 = new javax.swing.JButton();
+        dadosMoveis = new javax.swing.JButton();
 
         setClosable(true);
         setPreferredSize(new java.awt.Dimension(1180, 447));
@@ -74,12 +80,12 @@ public class EstoqueTela extends javax.swing.JInternalFrame {
             .addGap(0, 408, Short.MAX_VALUE)
         );
 
-        estoque2.setBackground(new java.awt.Color(255, 168, 0));
-        estoque2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        estoque2.setText("jButton2");
-        estoque2.addActionListener(new java.awt.event.ActionListener() {
+        dadosMoveis.setBackground(new java.awt.Color(255, 168, 0));
+        dadosMoveis.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        dadosMoveis.setText("jButton2");
+        dadosMoveis.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                estoque2ActionPerformed(evt);
+                dadosMoveisActionPerformed(evt);
             }
         });
 
@@ -90,7 +96,7 @@ public class EstoqueTela extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(estoque1, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(estoque2, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(dadosMoveis, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(rel, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addComponent(telaE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -102,7 +108,7 @@ public class EstoqueTela extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(estoque1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
-                        .addComponent(estoque2, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(dadosMoveis, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
                         .addComponent(rel, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -112,19 +118,21 @@ public class EstoqueTela extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void estoque1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_estoque1ActionPerformed
-        estoqueMP = new EstoqueMP(teste2, materias);
+        estoqueMP = new EstoqueMP(tP, materias);
         telaE.add(estoqueMP);
         estoqueMP.setVisible(true);// TODO add your handling code here:
     }//GEN-LAST:event_estoque1ActionPerformed
 
-    private void estoque2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_estoque2ActionPerformed
-                     
-    }//GEN-LAST:event_estoque2ActionPerformed
+    private void dadosMoveisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dadosMoveisActionPerformed
+        telaDM = new DadosMovel(tP, materias, moveis);
+        telaE.add(telaDM);
+        telaDM.setVisible(true);
+    }//GEN-LAST:event_dadosMoveisActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton dadosMoveis;
     private javax.swing.JButton estoque1;
-    private javax.swing.JButton estoque2;
     private javax.swing.JButton rel;
     private javax.swing.JDesktopPane telaE;
     // End of variables declaration//GEN-END:variables

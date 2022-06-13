@@ -19,17 +19,17 @@ public class DadosFornecedor extends javax.swing.JInternalFrame {
      * Creates new form DadosFornecedor
      */
     public TelaPrincipal tP;
-    public ArrayList<Fornecedor> fornecedores = new ArrayList<Fornecedor>();        
-    
-    
+    public ArrayList<Fornecedor> fornecedores = new ArrayList<Fornecedor>();
+
     public DadosFornecedor(TelaPrincipal tP, ArrayList<Fornecedor> forn) {
-        
+
         initComponents();
         this.tP = tP;
         fornecedores = forn;
-        pr.setVisible(false);
-        mptela.setVisible(false);
         
+        pr.setVisible(true);
+        mptela.setVisible(true);
+
         pegaF();
     }
 
@@ -43,8 +43,9 @@ public class DadosFornecedor extends javax.swing.JInternalFrame {
         }
 
     }
-    public void pegaDados(){
-         for (int i = 0; i < fornecedores.size(); i++) {
+
+    public void pegaDados() {
+        for (int i = 0; i < fornecedores.size(); i++) {
             if (fornecedores.get(i).getNome().equals(String.valueOf(cbFornecedor.getSelectedItem()))) {
 
                 edtNome.setText(fornecedores.get(i).getNome());
@@ -55,28 +56,31 @@ public class DadosFornecedor extends javax.swing.JInternalFrame {
                 cidadeField.setText(fornecedores.get(i).getCidade());
                 inscEField.setText(fornecedores.get(i).inscE);
                 descricaoTA.setText(fornecedores.get(i).descricao);
-                
-                
+
+                mpCombo.removeAllItems();
                 mpCombo.addItem(" ");
-                for(int j = 0; j < fornecedores.get(i).nomeMP.size(); j++){
+                for (int j = 0; j < fornecedores.get(i).nomeMP.size(); j++) {
                     mpCombo.addItem(fornecedores.get(i).nomeMP.get(j));
                 }
-                
-                
-                
-                
-                
-                
-                
+
                 i = fornecedores.size();
             }
 
         }
 
-        
     }
-    
-  
+
+    public void pegaMP() {
+        for (int i = 0; i < fornecedores.get(cbFornecedor.getSelectedIndex() - 1).nomeMP.size(); i++) {
+            if (fornecedores.get(cbFornecedor.getSelectedIndex() - 1).nomeMP.get(i).equals(String.valueOf(mpCombo.getSelectedItem()))) {
+                mpNome.setText(fornecedores.get(cbFornecedor.getSelectedIndex() - 1).nomeMP.get(i));
+                mpPreco.setText(fornecedores.get(cbFornecedor.getSelectedIndex() - 1).precoF.get(i));
+                mpFrete.setText(fornecedores.get(cbFornecedor.getSelectedIndex() - 1).frete.get(i));
+            }
+        }
+
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -113,12 +117,13 @@ public class DadosFornecedor extends javax.swing.JInternalFrame {
         jLabel11 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        nome1 = new javax.swing.JFormattedTextField();
-        nome2 = new javax.swing.JFormattedTextField();
-        nome3 = new javax.swing.JFormattedTextField();
+        mpFrete = new javax.swing.JFormattedTextField();
+        mpNome = new javax.swing.JFormattedTextField();
+        mpPreco = new javax.swing.JFormattedTextField();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
 
+        setClosable(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel12.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -214,6 +219,11 @@ public class DadosFornecedor extends javax.swing.JInternalFrame {
         pr.add(cidadeField, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 100, 150, 35));
 
         mpCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
+        mpCombo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mpComboActionPerformed(evt);
+            }
+        });
         pr.add(mpCombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 20, 120, 30));
 
         mptela.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -236,29 +246,29 @@ public class DadosFornecedor extends javax.swing.JInternalFrame {
         jButton2.setText("Deletar");
         mptela.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 200, -1, 30));
 
-        nome1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        nome1.addActionListener(new java.awt.event.ActionListener() {
+        mpFrete.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        mpFrete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nome1ActionPerformed(evt);
+                mpFreteActionPerformed(evt);
             }
         });
-        mptela.add(nome1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 145, 160, 35));
+        mptela.add(mpFrete, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 145, 160, 35));
 
-        nome2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        nome2.addActionListener(new java.awt.event.ActionListener() {
+        mpNome.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        mpNome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nome2ActionPerformed(evt);
+                mpNomeActionPerformed(evt);
             }
         });
-        mptela.add(nome2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 25, 160, 35));
+        mptela.add(mpNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 25, 160, 35));
 
-        nome3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        nome3.addActionListener(new java.awt.event.ActionListener() {
+        mpPreco.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        mpPreco.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nome3ActionPerformed(evt);
+                mpPrecoActionPerformed(evt);
             }
         });
-        mptela.add(nome3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 85, 160, 35));
+        mptela.add(mpPreco, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 85, 160, 35));
 
         pr.add(mptela, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 60, -1, 240));
 
@@ -280,34 +290,49 @@ public class DadosFornecedor extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void cbFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbFornecedorActionPerformed
-        if (!" ".equals(String.valueOf(cbFornecedor.getSelectedItem()))) {
-            pr.setVisible(true);
-            pegaDados();
-        }else{
-            pr.setVisible(false);
-        }
-    }//GEN-LAST:event_cbFornecedorActionPerformed
-
     private void edtNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edtNomeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_edtNomeActionPerformed
 
-    private void nome1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nome1ActionPerformed
+    private void mpFreteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mpFreteActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_nome1ActionPerformed
+    }//GEN-LAST:event_mpFreteActionPerformed
 
-    private void nome2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nome2ActionPerformed
+    private void mpNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mpNomeActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_nome2ActionPerformed
+    }//GEN-LAST:event_mpNomeActionPerformed
 
-    private void nome3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nome3ActionPerformed
+    private void mpPrecoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mpPrecoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_nome3ActionPerformed
+    }//GEN-LAST:event_mpPrecoActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void mpComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mpComboActionPerformed
+        if (!" ".equals(String.valueOf(mpCombo.getSelectedItem()))) {
+            mptela.setVisible(true);
+            pegaMP();
+        } else {
+            mptela.setVisible(false);
+        }
+    }//GEN-LAST:event_mpComboActionPerformed
+
+    private void cbFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbFornecedorActionPerformed
+          if (!" ".equals(String.valueOf(cbFornecedor.getSelectedItem()))) {
+
+            pr.setVisible(true);
+            mptela.setVisible(true);
+            
+            pegaDados();
+            
+        } else {
+            mptela.setVisible(false);
+            pr.setVisible(false);
+           
+        }
+    }//GEN-LAST:event_cbFornecedorActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -337,10 +362,10 @@ public class DadosFornecedor extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JComboBox<String> mpCombo;
+    private javax.swing.JFormattedTextField mpFrete;
+    private javax.swing.JFormattedTextField mpNome;
+    private javax.swing.JFormattedTextField mpPreco;
     private javax.swing.JPanel mptela;
-    private javax.swing.JFormattedTextField nome1;
-    private javax.swing.JFormattedTextField nome2;
-    private javax.swing.JFormattedTextField nome3;
     private javax.swing.JPanel pr;
     private javax.swing.JFormattedTextField telefoneField;
     // End of variables declaration//GEN-END:variables
