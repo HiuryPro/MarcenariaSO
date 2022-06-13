@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Principal;
+package estoqueTelas;
 
+import Principal.TelaPrincipal;
 import compravenda.Materia_Prima;
 import java.util.ArrayList;
 
@@ -72,6 +73,8 @@ public class EstoqueMP extends javax.swing.JInternalFrame {
         alt = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
         precoMPField = new javax.swing.JTextField();
+
+        setClosable(true);
 
         jLabel12.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel12.setText("Matéria Prima");

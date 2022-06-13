@@ -3,8 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Principal;
+package fornecedorTelas;
 
+import Principal.TelaPrincipal;
+import Principal.Validacao;
 import java.util.ArrayList;
 import pessoa.Fornecedor;
 import javax.swing.JOptionPane;
@@ -58,6 +60,7 @@ public class CadForn extends javax.swing.JInternalFrame {
         jLabel7 = new javax.swing.JLabel();
         Cad = new javax.swing.JButton();
 
+        setClosable(true);
         setTitle("Cadastro Fornecedor");
 
         try {

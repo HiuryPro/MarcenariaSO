@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Principal;
+package fornecedorTelas;
 
+import Principal.TelaPrincipal;
 import java.util.ArrayList;
 import pessoa.Fornecedor;
 

@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Principal;
+package clienteTelas;
 
+import Principal.TelaPrincipal;
 import java.util.ArrayList;
 import pessoa.Cliente;
 
@@ -89,6 +90,7 @@ public class DadosCliente extends javax.swing.JInternalFrame {
         cpfField = new javax.swing.JFormattedTextField();
         telefoneField = new javax.swing.JFormattedTextField();
 
+        setClosable(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N

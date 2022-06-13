@@ -5,10 +5,17 @@
  */
 package compravenda;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Hiury
  */
 public class Movel {
-    
+    public String nome;
+    public ArrayList<String> materiaP = new ArrayList<String>();
+    public ArrayList<Integer> qtd = new ArrayList<Integer>();
+    public float custoDeProducao;
+
+   
 }

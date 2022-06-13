@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Principal;
+package MP_Mov_Telas;
 
+import Principal.TelaPrincipal;
 import compravenda.Materia_Prima;
 import java.util.ArrayList;
 
@@ -59,6 +60,8 @@ public class CadMP extends javax.swing.JInternalFrame {
         jLabel4 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         descricaoMPField = new javax.swing.JTextPane();
+
+        setClosable(true);
 
         nome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

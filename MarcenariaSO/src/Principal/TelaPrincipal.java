@@ -5,6 +5,11 @@
  */
 package Principal;
 
+import Compra_Venda_Telas.ComVenTela;
+import estoqueTelas.EstoqueTela;
+import MP_Mov_Telas.MatMov;
+import clienteTelas.ClieteTela;
+import fornecedorTelas.FornTela;
 import compravenda.Compra;
 import compravenda.Materia_Prima;
 import compravenda.Movel;
@@ -22,12 +27,12 @@ import pessoa.Fornecedor;
  */
 public class TelaPrincipal extends javax.swing.JFrame {
 
-    ArrayList<Fornecedor> fornecedores = new ArrayList<Fornecedor>();
-    ArrayList<Materia_Prima> materiasprimas = new ArrayList<Materia_Prima>();
-    ArrayList<Movel> moveis = new ArrayList<Movel>();
-    ArrayList<Cliente> clientes = new ArrayList<Cliente>();
-    ArrayList<Venda> vendas = new ArrayList<Venda>();
-    ArrayList<Compra> compras = new ArrayList<Compra>();
+    public ArrayList<Fornecedor> fornecedores = new ArrayList<Fornecedor>();
+    public ArrayList<Materia_Prima> materiasprimas = new ArrayList<Materia_Prima>();
+    public ArrayList<Movel> moveis = new ArrayList<Movel>();
+    public ArrayList<Cliente> clientes = new ArrayList<Cliente>();
+    public ArrayList<Venda> vendas = new ArrayList<Venda>();
+    public ArrayList<Compra> compras = new ArrayList<Compra>();
 
     public String teste = "deu ruim";
 

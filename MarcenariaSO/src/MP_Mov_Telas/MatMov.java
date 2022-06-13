@@ -3,8 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Principal;
+package MP_Mov_Telas;
 
+import MP_Mov_Telas.CadMov;
+import MP_Mov_Telas.CadMP;
+import Principal.TelaPrincipal;
 import compravenda.Materia_Prima;
 import compravenda.Movel;
 import java.util.ArrayList;
