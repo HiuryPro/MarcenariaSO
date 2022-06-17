@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package MP_Mov_Telas;
+package Compra_Venda_Telas;
 
+import MP_Mov_Telas.*;
 import Principal.TelaPrincipal;
 import compravenda.Materia_Prima;
 import compravenda.Movel;
@@ -16,7 +17,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Hiury
  */
-public class CadMov extends javax.swing.JInternalFrame {
+public class Venda extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form cadMov
@@ -27,7 +28,7 @@ public class CadMov extends javax.swing.JInternalFrame {
     public int rowCount = 0;
     public int contador = 0;
 
-    public CadMov(TelaPrincipal tP, ArrayList<Materia_Prima> mp, ArrayList<Movel> mov) {
+    public Venda(TelaPrincipal tP, ArrayList<Materia_Prima> mp, ArrayList<Movel> mov) {
         initComponents();
         this.tP = tP;
         materiasP = mp;
@@ -79,7 +80,6 @@ public class CadMov extends javax.swing.JInternalFrame {
 
         if (resultado == JOptionPane.YES_OPTION) {
             salvaMovel();
-            contador ++;
             tP.moveis = this.moveis;
 
         } else {

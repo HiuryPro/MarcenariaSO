@@ -11,18 +11,23 @@ package compravenda;
  */
 public abstract class Transacao {
 
-    private int quantidade;
-    private float precoUnit;
+    public int quantidade;
+    public float precoUnit;
     public float precoTotal;
+    public String data;
 
-    public abstract void CalculaPrecoT(int i);
+    public abstract void CalculaPrecoT(int qtd, String preco, String pessoa);
 
     public void setQuantidade(int novoQ) {
         quantidade = novoQ;
     }
 
-    public void setPrecoU(int preco) {
+    public void setPrecoU(float preco) {
         precoUnit = preco;
+    }
+    
+    public void setPrecoTotal(float precoT){
+        precoTotal = precoT;
     }
 
     public float getPrecoU() {
@@ -31,5 +36,9 @@ public abstract class Transacao {
 
     public int getQuantidade() {
         return quantidade;
+    }
+    
+    public float getPrecoTotal(){
+        return precoTotal;
     }
 }
