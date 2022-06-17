@@ -114,7 +114,9 @@ public class ComVenTela extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void estoque2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_estoque2ActionPerformed
-
+        VendaTela tela = new VendaTela(tP, moveis, clientes, vendas, materiasP);
+        telaCV.add(tela);
+        tela.setVisible(true);
     }//GEN-LAST:event_estoque2ActionPerformed
 
     private void estoque1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_estoque1ActionPerformed

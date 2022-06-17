@@ -39,9 +39,9 @@ public class CompraTela extends javax.swing.JInternalFrame {
 
         AdicionaTabela();
         contador = tabela.getRowCount();
-        
-        pegaMP();
+
         pegaF();
+        pegaMP();
 
     }
 

@@ -22,10 +22,11 @@ public class Compra extends Transacao {
     private float freteCompra;
 
  
-    
-    public Compra(ArrayList<Fornecedor> forn , ArrayList<Materia_Prima> mp){
+    public Compra(ArrayList<Fornecedor> forn, ArrayList<Materia_Prima> mP){
         fornecedores = forn;
-        materiasprimas = mp;
+        materiasprimas = mP;
+        
+        
     }
     
    
@@ -72,7 +73,7 @@ public class Compra extends Transacao {
         for (int i = 0; i < materiasprimas.size(); i++) {
             if (materiasprimas.get(i).nome.equals(nome)) {
                 estoque = materiasprimas.get(i).quantEstoque;
-                materiasprimas.get(i).quantEstoque = estoque + qtd;
+                materiasprimas.get(i).quantEstoque = estoque - qtd;
             }
 
         }

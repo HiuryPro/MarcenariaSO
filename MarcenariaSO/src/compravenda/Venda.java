@@ -18,13 +18,32 @@ public class Venda extends Transacao {
     ArrayList<Cliente> clientes = new ArrayList<Cliente>();
     ArrayList<Materia_Prima> materiasprimas = new ArrayList<Materia_Prima>();
 
-    public float CalculaPrecoT(int qtd, String mov, String cliente) {
+    public String nomeMovel;
+    private float descontoV;
+    public String nomeCliente;
+    public float lucro;
+    
+    
+    public Venda(ArrayList<Movel> mov, ArrayList<Cliente> clien, ArrayList<Materia_Prima> mP){
+        moveis = mov;
+        clientes = clien;
+        materiasprimas = mP;
+    }
+            
+            
+            
+    
+    
+    
+    
+
+    public void CalculaPrecoT(int qtd, String mov, String cliente) {
         float total;
         for (int i = 0; i < clientes.size(); i++) {
             if (clientes.get(i).getNome().equals(cliente)) {
                 for (int j = 0; j < moveis.size(); j++) {
                     if (moveis.get(j).nome.equals(mov)) {
-                        total = (qtd * moveis.get(j).custoDeProducao) - (qtd * moveis.get(j).custoDeProducao * (clientes.get(i).desconto / 100));
+                        total = (qtd * (moveis.get(j).custoDeProducao + lucro)) - ((qtd * (moveis.get(j).custoDeProducao + lucro)) * (clientes.get(i).desconto / 100));
                         setPrecoTotal(total);
                         atualizaEstoque(mov, qtd);
                     }
@@ -32,18 +51,32 @@ public class Venda extends Transacao {
 
             }
         }
-return 2;
+    }
+
+    public void setDesconto(String cliente) {
+        for (int i = 0; i < clientes.size(); i++) {
+            if (clientes.get(i).getNome().equals(cliente)) {
+                descontoV = clientes.get(i).desconto;
+            }
+        }
+    }
+
+    public float getDesconto() {
+        return descontoV;
+
     }
 
     public void atualizaEstoque(String nome, int qtd) {
         int estoque;
+        int quantGasta;
         for (int i = 0; i < moveis.size(); i++) {
             if (moveis.get(i).nome.equals(nome)) {
                 for (int x = 0; x < materiasprimas.size(); x++) {
                     for (int j = 0; j < moveis.get(i).materiaP.size(); j++) {
                         if (materiasprimas.get(x).nome.equals(moveis.get(i).materiaP.get(j))) {
-                            estoque = materiasprimas.get(j).quantEstoque;
-                            materiasprimas.get(j).quantEstoque = estoque - qtd;
+                            quantGasta = moveis.get(i).qtd.get(j);
+                            estoque = materiasprimas.get(x).quantEstoque;
+                            materiasprimas.get(x).quantEstoque = estoque - (quantGasta * qtd);
                         }
                     }
                 }

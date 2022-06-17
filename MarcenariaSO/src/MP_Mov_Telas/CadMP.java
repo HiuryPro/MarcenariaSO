@@ -28,6 +28,7 @@ public class CadMP extends javax.swing.JInternalFrame {
         initComponents();
         teste = vai;
         materiasPrimas = mats;
+        contador = materiasPrimas.size();
     }
 
     public void cadastraMP(String nomeMP, float preco, int quant, String descricao) {
