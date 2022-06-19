@@ -86,7 +86,7 @@ public class Compra extends Transacao {
         for (int i = 0; i < materiasprimas.size(); i++) {
             if (materiasprimas.get(i).nome.equals(nome)) {
                 estoque = materiasprimas.get(i).quantEstoque;
-                materiasprimas.get(i).quantEstoque = estoque - qtd;
+                materiasprimas.get(i).quantEstoque = estoque + qtd;
             }
 
         }

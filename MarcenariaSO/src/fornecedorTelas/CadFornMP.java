@@ -84,6 +84,17 @@ public class CadFornMP extends javax.swing.JInternalFrame {
 
     }
 
+    public void deletaLinha() {
+        if (del.getText() != null) {
+            if (rowCount > 0) {
+                rowCount--;
+                ((DefaultTableModel) tabela.getModel()).removeRow(Integer.parseInt(del.getText()) - 1);
+                ((DefaultTableModel) tabela.getModel()).setRowCount(rowCount);
+            }
+        }
+
+    }
+
     public void Confirma() {
         int resultado = JOptionPane.showConfirmDialog(null, "Deseja Cadastrar", "Confirmação", JOptionPane.YES_NO_OPTION);
 
@@ -285,7 +296,7 @@ public class CadFornMP extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-
+        deletaLinha();
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 

@@ -39,13 +39,13 @@ public class RelatorioC extends javax.swing.JInternalFrame {
     }
     
     public void pegaDados(){
-        Frete.setText(String.valueOf(compras.get(cbCompra.getSelectedIndex()).getFrete()));
-        PrecoB.setText(String.valueOf(compras.get(cbCompra.getSelectedIndex()).getPrecoBruto()));
-        PrecoT.setText(String.valueOf(compras.get(cbCompra.getSelectedIndex()).precoTotal));
-        dataC.setText(compras.get(cbCompra.getSelectedIndex()).data);
-        edtFornecedor.setText(compras.get(cbCompra.getSelectedIndex()).nomeFornecedor);
-        edtProduto.setText(compras.get(cbCompra.getSelectedIndex()).nomeMP);
-        edtQtd.setText(String.valueOf(compras.get(cbCompra.getSelectedIndex()).quantidade));
+        Frete.setText(String.valueOf(compras.get(cbCompra.getSelectedIndex() - 1).getFrete()));
+        PrecoB.setText(String.valueOf(compras.get(cbCompra.getSelectedIndex() - 1).getPrecoBruto()));
+        PrecoT.setText(String.valueOf(compras.get(cbCompra.getSelectedIndex() - 1).precoTotal));
+        dataC.setText(compras.get(cbCompra.getSelectedIndex() - 1).data);
+        edtFornecedor.setText(compras.get(cbCompra.getSelectedIndex() - 1).nomeFornecedor);
+        edtProduto.setText(compras.get(cbCompra.getSelectedIndex() - 1).nomeMP);
+        edtQtd.setText(String.valueOf(compras.get(cbCompra.getSelectedIndex() - 1).quantidade));
     }
     /**
      * This method is called from within the constructor to initialize the form.

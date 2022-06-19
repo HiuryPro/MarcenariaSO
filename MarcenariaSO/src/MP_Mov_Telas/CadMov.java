@@ -79,11 +79,22 @@ public class CadMov extends javax.swing.JInternalFrame {
 
         if (resultado == JOptionPane.YES_OPTION) {
             salvaMovel();
-            contador ++;
+            contador++;
             tP.moveis = this.moveis;
 
         } else {
 
+        }
+
+    }
+
+    public void deletaLinha() {
+        if (del.getText() != null) {
+            if (rowCount > 0) {
+                rowCount--;
+                ((DefaultTableModel) tabela.getModel()).removeRow(Integer.parseInt(del.getText()) - 1);
+                ((DefaultTableModel) tabela.getModel()).setRowCount(rowCount);
+            }
         }
 
     }
@@ -107,7 +118,7 @@ public class CadMov extends javax.swing.JInternalFrame {
         Cad = new javax.swing.JButton();
         adiciona = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jTextField5 = new javax.swing.JTextField();
+        del = new javax.swing.JTextField();
         custoTotal = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         mPCombo = new javax.swing.JComboBox<>();
@@ -166,6 +177,11 @@ public class CadMov extends javax.swing.JInternalFrame {
 
         jButton2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jButton2.setText("Deletar linha:");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         custoTotal.setText(" ");
 
@@ -201,7 +217,7 @@ public class CadMov extends javax.swing.JInternalFrame {
                         .addGap(20, 20, 20)
                         .addComponent(jButton2)
                         .addGap(8, 8, 8)
-                        .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(del, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(330, 330, 330)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel6)
@@ -236,7 +252,7 @@ public class CadMov extends javax.swing.JInternalFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(adiciona, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(del, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(20, 20, 20)
                 .addComponent(Cad)
                 .addContainerGap(22, Short.MAX_VALUE))
@@ -256,18 +272,22 @@ public class CadMov extends javax.swing.JInternalFrame {
 
     }//GEN-LAST:event_adicionaActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        deletaLinha();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Cad;
     private javax.swing.JButton adiciona;
     private javax.swing.JLabel custoTotal;
+    private javax.swing.JTextField del;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField5;
     private javax.swing.JComboBox<String> mPCombo;
     private javax.swing.JTextField nomeMov;
     private javax.swing.JTextField qtdMP;

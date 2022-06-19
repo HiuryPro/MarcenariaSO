@@ -6,6 +6,7 @@
 package Principal;
 
 import Compra_Venda_Telas.ComVenTela;
+import DadosCV.DadosCVTela;
 import estoqueTelas.EstoqueTela;
 import MP_Mov_Telas.MatMov;
 import clienteTelas.ClieteTela;
@@ -178,13 +179,15 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void DadosCVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DadosCVActionPerformed
-        ComVenTela estoq = new ComVenTela(this, materiasprimas, moveis, fornecedores, clientes, compras, vendas);
+        DadosCVTela estoq = new DadosCVTela(this, compras, vendas);
         tela.add(estoq);
         estoq.setVisible(true);// TODO add your handling code here:
     }//GEN-LAST:event_DadosCVActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+        ComVenTela telaCV = new ComVenTela(this, materiasprimas, moveis, fornecedores, clientes, compras, vendas);  
+        tela.add(telaCV);
+        telaCV.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**

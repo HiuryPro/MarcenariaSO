@@ -9,6 +9,9 @@ import Principal.TelaPrincipal;
 import compravenda.Compra;
 import compravenda.Venda;
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -27,12 +30,14 @@ public class RelatorioV extends javax.swing.JInternalFrame {
         initComponents();
         this.tP = tP;
         vendas = vend;
+        cbAndamento.addItem(" ");
+        cbFinalizada.addItem(" ");
         pegaVendas0();
         pegaVendas1();
     }
 
     public void pegaVendas0() {
-        cbAndamento.addItem(" ");
+
         for (int i = 0; i < vendas.size(); i++) {
             if (vendas.get(i).status == 0) {
                 cbAndamento.addItem("Compra nº " + (i + 1));
@@ -42,10 +47,10 @@ public class RelatorioV extends javax.swing.JInternalFrame {
     }
 
     public void pegaVendas1() {
-        cbAndamento.addItem(" ");
+
         for (int i = 0; i < vendas.size(); i++) {
             if (vendas.get(i).status == 1) {
-                cbAndamento.addItem("Compra nº " + (i + 1));
+                cbFinalizada.addItem("Compra nº " + (i + 1));
             }
 
         }
@@ -53,9 +58,13 @@ public class RelatorioV extends javax.swing.JInternalFrame {
 
     public void pegaDados(int i) {
         String valor;
-        valor = String.valueOf(cbAndamento.getSelectedItem()).replaceAll("[^0-9]+", "");
-        indice = Integer.parseInt(valor) - 1;
+
         if (i == 0) {
+            valor = String.valueOf(cbAndamento.getSelectedItem()).replaceAll("[^0-9]+", "");
+            JOptionPane.showMessageDialog(null, valor);
+            indice = Integer.parseInt(valor) - 1;
+
+            finaliza.setVisible(true);
             Acrescento.setText(String.valueOf(vendas.get(indice).acrescento));
             PrecoB.setText(String.valueOf(vendas.get(indice).getPrecoBruto()));
             PrecoT.setText(String.valueOf(vendas.get(indice).precoTotal));
@@ -65,8 +74,13 @@ public class RelatorioV extends javax.swing.JInternalFrame {
             edtQtd.setText(String.valueOf(vendas.get(indice).quantidade));
             descon.setText(String.valueOf(vendas.get(indice).getDesconto()));
             status.setText("Em andamento");
-            
+
         } else if (i == 1) {
+            valor = String.valueOf(cbFinalizada.getSelectedItem()).replaceAll("[^0-9]+", "");
+            JOptionPane.showMessageDialog(null, valor);
+            indice = Integer.parseInt(valor) - 1;
+
+            finaliza.setVisible(false);
             Acrescento.setText(String.valueOf(vendas.get(indice).acrescento));
             PrecoB.setText(String.valueOf(vendas.get(indice).getPrecoBruto()));
             PrecoT.setText(String.valueOf(vendas.get(indice).precoTotal));
@@ -247,6 +261,7 @@ public class RelatorioV extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_PrecoBActionPerformed
 
     private void cbAndamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbAndamentoActionPerformed
+
         if (!" ".equals(String.valueOf(cbAndamento.getSelectedItem()))) {
             pegaDados(0);
             telaC.setVisible(true);
@@ -256,7 +271,8 @@ public class RelatorioV extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_cbAndamentoActionPerformed
 
     private void cbFinalizadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbFinalizadaActionPerformed
-        if (!" ".equals(String.valueOf(cbAndamento.getSelectedItem()))) {
+
+        if (!" ".equals(String.valueOf(cbFinalizada.getSelectedItem()))) {
             pegaDados(1);
             telaC.setVisible(true);
         } else {
@@ -269,10 +285,30 @@ public class RelatorioV extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_statusActionPerformed
 
     private void finalizaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finalizaActionPerformed
-       vendas.get(indice).status = 1;
-       pegaVendas0();
-       pegaVendas1();
-       tP.vendas = this.vendas;
+        
+        vendas.get(indice).status = 1;
+        cbAndamento.setSelectedItem(" ");
+        cbFinalizada.setSelectedItem(" ");
+        
+        for (int i = 0; i < cbAndamento.getItemCount(); i++) {
+            if (i == 0) {
+
+            } else {
+                cbAndamento.removeItemAt(i);
+            }
+        }
+        for (int i = 0; i < cbFinalizada.getItemCount(); i++) {
+            if (i == 0) {
+
+            } else {
+                cbFinalizada.removeItemAt(i);
+               
+            }
+        }
+        pegaVendas0();
+        pegaVendas1();
+
+        tP.vendas = this.vendas;
     }//GEN-LAST:event_finalizaActionPerformed
 
 
