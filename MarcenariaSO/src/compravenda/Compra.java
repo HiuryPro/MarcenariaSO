@@ -6,6 +6,7 @@
 package compravenda;
 
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import pessoa.Fornecedor;
 
 /**
@@ -20,16 +21,13 @@ public class Compra extends Transacao {
     public String nomeFornecedor;
     public String nomeMP;
     private float freteCompra;
+    public String apoio;
 
- 
-    public Compra(ArrayList<Fornecedor> forn, ArrayList<Materia_Prima> mP){
+    public Compra(ArrayList<Fornecedor> forn, ArrayList<Materia_Prima> mP) {
         fornecedores = forn;
         materiasprimas = mP;
-        
-        
+
     }
-    
-   
 
     public void CalculaPrecoT(int qtd, String mp, String forn) {
         float total;
@@ -38,11 +36,26 @@ public class Compra extends Transacao {
                 for (int j = 0; j < fornecedores.get(i).nomeMP.size(); j++) {
                     if (fornecedores.get(i).nomeMP.get(j).equals(mp)) {
                         total = qtd * Float.parseFloat(fornecedores.get(i).precoF.get(j)) + Float.parseFloat(fornecedores.get(i).frete.get(j));
-                           System.out.println(total);
                         setPrecoTotal(total);
-                        atualizaEstoque(mp, qtd);
+                        apoio = fornecedores.get(i).getNome();
                     }
 
+                }
+
+            }
+        }
+
+    }
+
+    @Override
+    public void CalculaPrecoT(int qtd, String nome) {
+        for (int i = 0; i < fornecedores.size(); i++) {
+            if (fornecedores.get(i).getNome().equals(apoio)) {
+                for (int j = 0; j < fornecedores.get(i).nomeMP.size(); j++) {
+                    if (fornecedores.get(i).nomeMP.get(j).equals(nome)) {
+                        precoBruto = qtd * Float.parseFloat(fornecedores.get(i).precoF.get(j));
+                        JOptionPane.showMessageDialog(null, precoBruto);
+                    }
                 }
 
             }

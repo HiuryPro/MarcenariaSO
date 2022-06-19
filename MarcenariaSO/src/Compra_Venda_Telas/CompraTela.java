@@ -76,10 +76,11 @@ public class CompraTela extends javax.swing.JInternalFrame {
             tabela.setValueAt(compras.get(i).nomeMP, i, 0);
             tabela.setValueAt(compras.get(i).getPrecoU(), i, 1);
             tabela.setValueAt(compras.get(i).getQuantidade(), i, 2);
-            tabela.setValueAt(compras.get(i).getFrete(), i, 3);
-            tabela.setValueAt(compras.get(i).getPrecoTotal(), i, 4);
-            tabela.setValueAt(compras.get(i).nomeFornecedor, i, 5);
-            tabela.setValueAt(compras.get(i).data, i, 6);
+             tabela.setValueAt(compras.get(i).getPrecoBruto(), i, 3);
+            tabela.setValueAt(compras.get(i).getFrete(), i, 4);
+            tabela.setValueAt(compras.get(i).getPrecoTotal(), i, 5);
+            tabela.setValueAt(compras.get(i).nomeFornecedor, i, 6);
+            tabela.setValueAt(compras.get(i).data, i, 7);
 
         }
 
@@ -112,6 +113,8 @@ public class CompraTela extends javax.swing.JInternalFrame {
         compras.get(contador).setQuantidade(Integer.parseInt(qtd.getText()));
         compras.get(contador).setFrete(String.valueOf(cbFornecedor.getSelectedItem()), String.valueOf(cbMateriaP.getSelectedItem()));
         compras.get(contador).setPrecoU(pegaPrecoUnit());
+        compras.get(contador).CalculaPrecoT(Integer.parseInt(qtd.getText()), String.valueOf(cbMateriaP.getSelectedItem()));
+        compras.get(contador).atualizaEstoque( String.valueOf(cbMateriaP.getSelectedItem()),Integer.parseInt(qtd.getText()));
         tP.materiasprimas = compras.get(contador).getEstoqueA();
     }
 
@@ -184,11 +187,11 @@ public class CompraTela extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "Matéria Prima", "Preço", "Quantidade", "Frete", "Total", "Fornecedor", "Data entrada"
+                "Matéria Prima", "Preço", "Quantidade", "Preço Bruto", "Frete", "Total", "Fornecedor", "Data entrada"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Float.class, java.lang.Integer.class, java.lang.Float.class, java.lang.Float.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.Float.class, java.lang.Integer.class, java.lang.Float.class, java.lang.Float.class, java.lang.Float.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -260,39 +263,35 @@ public class CompraTela extends javax.swing.JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(Cad, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(294, 294, 294))
             .addGroup(layout.createSequentialGroup()
+                .addGap(16, 16, 16)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
                         .addComponent(jLabel5)
                         .addGap(200, 200, 200)
                         .addComponent(jLabel1)
                         .addGap(142, 142, 142)
                         .addComponent(jLabel9))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
                         .addComponent(cbFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(20, 20, 20)
                         .addComponent(cbMateriaP, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(30, 30, 30)
                         .addComponent(qtd, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
                             .addComponent(dataE, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(503, 503, 503)
+                        .addGap(500, 500, 500)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel11)
                             .addComponent(custoTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 740, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 754, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(20, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(Cad, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(294, 294, 294))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

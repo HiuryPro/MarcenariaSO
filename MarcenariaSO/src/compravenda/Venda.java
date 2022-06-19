@@ -21,37 +21,43 @@ public class Venda extends Transacao {
     public String nomeMovel;
     private float descontoV;
     public String nomeCliente;
-    public float lucro;
-    
-    
-    public Venda(ArrayList<Movel> mov, ArrayList<Cliente> clien, ArrayList<Materia_Prima> mP){
+    public float acrescento;
+    public int status;
+
+    public Venda(ArrayList<Movel> mov, ArrayList<Cliente> clien, ArrayList<Materia_Prima> mP) {
         moveis = mov;
         clientes = clien;
         materiasprimas = mP;
     }
-            
-            
-            
-    
-    
-    
-    
 
+    @Override
     public void CalculaPrecoT(int qtd, String mov, String cliente) {
         float total;
         for (int i = 0; i < clientes.size(); i++) {
             if (clientes.get(i).getNome().equals(cliente)) {
                 for (int j = 0; j < moveis.size(); j++) {
                     if (moveis.get(j).nome.equals(mov)) {
-                        total = (qtd * (moveis.get(j).custoDeProducao + lucro)) - ((qtd * (moveis.get(j).custoDeProducao + lucro)) * (clientes.get(i).desconto / 100));
+                        total = (qtd * (moveis.get(j).custoDeProducao + acrescento)) - ((qtd * (moveis.get(j).custoDeProducao + acrescento)) * (clientes.get(i).desconto / 100));
                         setPrecoTotal(total);
-                        atualizaEstoque(mov, qtd);
                     }
                 }
 
             }
         }
     }
+    
+    @Override
+    public void CalculaPrecoT(int qtd, String nome){
+         for (int j = 0; j < moveis.size(); j++) {
+                    if (moveis.get(j).nome.equals(nome)) {
+                        precoBruto = qtd * moveis.get(j).custoDeProducao;
+
+                    }
+                }
+
+    }
+    
+    
 
     public void setDesconto(String cliente) {
         for (int i = 0; i < clientes.size(); i++) {

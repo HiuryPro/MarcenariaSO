@@ -70,14 +70,15 @@ public class VendaTela extends javax.swing.JInternalFrame {
     public void AdicionaTabela() {
         for (int i = 0; i < vendas.size(); i++) {
             ((DefaultTableModel) tabela.getModel()).setRowCount(i + 1);
-            tabela.setValueAt(vendas.get(i).nomeMovel, i, 0);
+            tabela.setValueAt(vendas.get(i).nomeMovel + " ", i, 0);
             tabela.setValueAt(vendas.get(i).getPrecoU(), i, 1);
             tabela.setValueAt(vendas.get(i).getQuantidade(), i, 2);
-            tabela.setValueAt(vendas.get(i).getPrecoTotal(), i, 3);
-            tabela.setValueAt(vendas.get(i).nomeCliente, i, 4);
+            tabela.setValueAt(vendas.get(i).getPrecoBruto(), i, 3);
+            tabela.setValueAt(vendas.get(i).acrescento, i, 4);
             tabela.setValueAt(vendas.get(i).getDesconto(), i, 5);
-            tabela.setValueAt(vendas.get(i).lucro, i, 6);
-            tabela.setValueAt(vendas.get(i).data, i, 7);
+            tabela.setValueAt(vendas.get(i).getPrecoTotal(), i, 6);
+            tabela.setValueAt(vendas.get(i).nomeCliente + " ", i, 7);
+            tabela.setValueAt(vendas.get(i).data, i, 8);
 
         }
 
@@ -85,10 +86,10 @@ public class VendaTela extends javax.swing.JInternalFrame {
 
     public void calculaCustoTotal() {
         float venda = 0;
-        float lucro = 0;
+        float acrescento = 0;
         int qtd = 0;
 
-        lucro = Float.parseFloat(acresc.getText());
+        acrescento = Float.parseFloat(acresc.getText());
         qtd = Integer.parseInt(this.qtd.getText());
 
         if (!" ".equals(String.valueOf(cbClientes.getSelectedItem())) && !" ".equals(String.valueOf(cbMovel.getSelectedItem())) && !"".equals(this.qtd.getText())) {
@@ -96,7 +97,7 @@ public class VendaTela extends javax.swing.JInternalFrame {
                 if (moveis.get(i).nome.equals(String.valueOf(cbMovel.getSelectedItem()))) {
                     for (int j = 0; j < clientes.size(); j++) {
                         if (clientes.get(j).getNome().equals(String.valueOf(cbClientes.getSelectedItem()))) {
-                            venda = (qtd * (moveis.get(i).custoDeProducao + lucro)) - ((qtd * (moveis.get(i).custoDeProducao + lucro)) * (clientes.get(j).desconto / 100));
+                            venda = (qtd * (moveis.get(i).custoDeProducao + acrescento)) - ((qtd * (moveis.get(i).custoDeProducao + acrescento)) * (clientes.get(j).desconto / 100));
                         }
                     }
 
@@ -111,13 +112,15 @@ public class VendaTela extends javax.swing.JInternalFrame {
         vendas.add(new Venda(moveis, clientes, materiasP));
         vendas.get(contador).nomeCliente = String.valueOf(cbClientes.getSelectedItem());
         vendas.get(contador).nomeMovel = String.valueOf(cbMovel.getSelectedItem());
-        vendas.get(contador).lucro = Float.parseFloat(acresc.getText());
+        vendas.get(contador).acrescento = Float.parseFloat(acresc.getText());
         vendas.get(contador).CalculaPrecoT(Integer.parseInt(qtd.getText()), String.valueOf(cbMovel.getSelectedItem()), String.valueOf(cbClientes.getSelectedItem()));
         vendas.get(contador).data = dataE.getText();
         vendas.get(contador).setQuantidade(Integer.parseInt(qtd.getText()));
         vendas.get(contador).setDesconto(String.valueOf(cbClientes.getSelectedItem()));
         vendas.get(contador).setPrecoU(pegaPrecoUnit());
-        
+        vendas.get(contador).CalculaPrecoT(Integer.parseInt(qtd.getText()), String.valueOf(cbMovel.getSelectedItem()));
+        vendas.get(contador).atualizaEstoque(String.valueOf(cbMovel.getSelectedItem()), Integer.parseInt(qtd.getText()));
+        vendas.get(contador).status = 0;
         tP.materiasprimas = vendas.get(contador).getEstoqueA();
     }
 
@@ -187,11 +190,11 @@ public class VendaTela extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "Móvel", "Preço", "Quantidade", "Total", "Cliente", "Desconto", "Acrescento", "Data saída"
+                "Móvel", "Preço", "Quantidade", "Preco Bruto", "Acrescento", "Desconto", "Total", "Cliente", "Data saída"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Float.class, java.lang.Integer.class, java.lang.Float.class, java.lang.String.class, java.lang.Float.class, java.lang.Float.class, java.lang.String.class
+                java.lang.String.class, java.lang.Float.class, java.lang.Integer.class, java.lang.Object.class, java.lang.Float.class, java.lang.Float.class, java.lang.Float.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -268,39 +271,45 @@ public class VendaTela extends javax.swing.JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel10)
-                            .addComponent(acresc, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(50, 50, 50)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(dataE, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3))
-                        .addGap(243, 243, 243)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel11)
-                            .addComponent(custoTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 740, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cbClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5))
-                        .addGap(20, 20, 20)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cbMovel, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1))
-                        .addGap(30, 30, 30)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel9)
-                            .addComponent(qtd, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(20, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(Cad, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(294, 294, 294))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addComponent(jLabel5)
+                        .addGap(232, 232, 232)
+                        .addComponent(jLabel1)
+                        .addGap(196, 196, 196)
+                        .addComponent(jLabel9))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel10)
+                                    .addComponent(acresc, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(50, 50, 50)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(dataE, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel3))
+                                .addGap(243, 243, 243)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel11)
+                                    .addComponent(custoTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(cbClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(20, 20, 20)
+                                .addComponent(cbMovel, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(30, 30, 30)
+                                .addComponent(qtd, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(32, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -322,22 +331,20 @@ public class VendaTela extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel11)
                         .addGap(8, 8, 8)
-                        .addComponent(custoTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(25, 25, 25))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel10)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(acresc, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(13, 13, 13)
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(dataE, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                        .addComponent(custoTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabel10)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(acresc, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(13, 13, 13)
+                            .addComponent(jLabel3)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+                            .addComponent(dataE, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Cad, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(10, Short.MAX_VALUE))
         );
@@ -360,12 +367,12 @@ public class VendaTela extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_cbMovelActionPerformed
 
     private void qtdKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_qtdKeyReleased
-        if (!" ".equals(String.valueOf(cbMovel.getSelectedItem())) && !" ".equals(String.valueOf(cbClientes.getSelectedItem())) && !"".equals(qtd.getText()) && !"".equals(acresc.getText())) 
+        if (!" ".equals(String.valueOf(cbMovel.getSelectedItem())) && !" ".equals(String.valueOf(cbClientes.getSelectedItem())) && !"".equals(qtd.getText()) && !"".equals(acresc.getText()))
             calculaCustoTotal();
     }//GEN-LAST:event_qtdKeyReleased
 
     private void acrescKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_acrescKeyReleased
-       if (!" ".equals(String.valueOf(cbMovel.getSelectedItem())) && !" ".equals(String.valueOf(cbClientes.getSelectedItem())) && !"".equals(qtd.getText()) && !"".equals(acresc.getText())) 
+        if (!" ".equals(String.valueOf(cbMovel.getSelectedItem())) && !" ".equals(String.valueOf(cbClientes.getSelectedItem())) && !"".equals(qtd.getText()) && !"".equals(acresc.getText()))
             calculaCustoTotal();
     }//GEN-LAST:event_acrescKeyReleased
 

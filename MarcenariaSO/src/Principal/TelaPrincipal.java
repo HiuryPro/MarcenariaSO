@@ -42,6 +42,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     public TelaPrincipal() {
         initComponents();
         materia.setText("<html> Matérias Primas/<br> Moveis<html>");
+        DadosCV.setText("<html> Dados <br> Compra/Venda<html>");
         setIcon();
     }
 
@@ -58,27 +59,27 @@ public class TelaPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
+        DadosCV = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         materia = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         tela = new javax.swing.JDesktopPane();
         jButton5 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Marcenaria Serra de Ouro");
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton1.setBackground(new java.awt.Color(255, 168, 0));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jButton1.setText("Compra/Venda");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        DadosCV.setBackground(new java.awt.Color(255, 168, 0));
+        DadosCV.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        DadosCV.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                DadosCVActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 0, 190, 147));
+        getContentPane().add(DadosCV, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 0, 160, 147));
 
         jButton2.setBackground(new java.awt.Color(255, 168, 0));
         jButton2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -88,7 +89,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 0, 190, 147));
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 0, 159, 147));
 
         materia.setBackground(new java.awt.Color(255, 168, 0));
         materia.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -97,7 +98,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 materiaActionPerformed(evt);
             }
         });
-        getContentPane().add(materia, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 0, 190, 147));
+        getContentPane().add(materia, new org.netbeans.lib.awtextra.AbsoluteConstraints(388, 0, 159, 147));
 
         jButton4.setBackground(new java.awt.Color(255, 168, 0));
         jButton4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -107,7 +108,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 jButton4ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 0, 190, 147));
+        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(546, 0, 159, 147));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/serradeouroicon.png"))); // NOI18N
         jLabel2.setText("jLabel2");
@@ -134,7 +135,17 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 jButton5ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 0, 190, 147));
+        getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(704, 0, 159, 147));
+
+        jButton3.setBackground(new java.awt.Color(255, 168, 0));
+        jButton3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jButton3.setText("Compra/Venda");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(862, 0, 159, 147));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -166,11 +177,15 @@ public class TelaPrincipal extends javax.swing.JFrame {
 // TODO add your handling code here:
     }//GEN-LAST:event_jButton5ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void DadosCVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DadosCVActionPerformed
         ComVenTela estoq = new ComVenTela(this, materiasprimas, moveis, fornecedores, clientes, compras, vendas);
         tela.add(estoq);
         estoq.setVisible(true);// TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_DadosCVActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -208,8 +223,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton DadosCV;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel2;

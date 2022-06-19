@@ -15,9 +15,17 @@ public abstract class Transacao {
     public float precoUnit;
     public float precoTotal;
     public String data;
+    protected float precoBruto;
 
-    public abstract void CalculaPrecoT(int qtd, String preco, String pessoa);
+    public abstract void CalculaPrecoT(int qtd, String item, String pessoa);
 
+    public void CalculaPrecoT(int qtd, String pessoa){
+        
+    }
+    
+    public float getPrecoBruto(){
+        return precoBruto;
+    }
     public void setQuantidade(int novoQ) {
         quantidade = novoQ;
     }
@@ -25,8 +33,8 @@ public abstract class Transacao {
     public void setPrecoU(float preco) {
         precoUnit = preco;
     }
-    
-    public void setPrecoTotal(float precoT){
+
+    public void setPrecoTotal(float precoT) {
         precoTotal = precoT;
     }
 
@@ -37,8 +45,8 @@ public abstract class Transacao {
     public int getQuantidade() {
         return quantidade;
     }
-    
-    public float getPrecoTotal(){
+
+    public float getPrecoTotal() {
         return precoTotal;
     }
 }
