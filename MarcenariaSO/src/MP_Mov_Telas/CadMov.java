@@ -32,6 +32,7 @@ public class CadMov extends javax.swing.JInternalFrame {
         this.tP = tP;
         materiasP = mp;
         moveis = mov;
+        contador = moveis.size();
         pegaMP();
 
     }
@@ -72,6 +73,7 @@ public class CadMov extends javax.swing.JInternalFrame {
             moveis.get(contador).qtd.add(Integer.parseInt(String.valueOf(tabela.getValueAt(i, 1))));
         }
         moveis.get(contador).custoDeProducao = Float.parseFloat(custoTotal.getText());
+        contador++;
     }
 
     public void Confirma() {
@@ -79,7 +81,6 @@ public class CadMov extends javax.swing.JInternalFrame {
 
         if (resultado == JOptionPane.YES_OPTION) {
             salvaMovel();
-            contador++;
             tP.moveis = this.moveis;
 
         } else {

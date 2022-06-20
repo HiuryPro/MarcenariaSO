@@ -20,16 +20,17 @@ public class CadCliente extends javax.swing.JInternalFrame {
     /**
      * Creates new form cadForn
      */
-    TelaPrincipal vaiCaralho;
+    TelaPrincipal tP;
     ArrayList<Cliente> clientes = new ArrayList<Cliente>();
     Validacao valida = new Validacao();
     public int count = 0;
 
     public CadCliente(TelaPrincipal teste3, ArrayList<Cliente> forn) {
         initComponents();
-        vaiCaralho = teste3;
-        vaiCaralho.teste = "deu bom";
+        tP = teste3;
+        tP.teste = "deu bom";
         clientes = forn;
+        count = clientes.size();
     }
 
     /**
@@ -59,7 +60,7 @@ public class CadCliente extends javax.swing.JInternalFrame {
         Cad = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
         enderecoField = new javax.swing.JTextField();
-        cidade1 = new javax.swing.JTextField();
+        cidade = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
 
         setClosable(true);
@@ -151,9 +152,9 @@ public class CadCliente extends javax.swing.JInternalFrame {
 
         enderecoField.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
-        cidade1.addActionListener(new java.awt.event.ActionListener() {
+        cidade.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cidade1ActionPerformed(evt);
+                cidadeActionPerformed(evt);
             }
         });
 
@@ -189,7 +190,7 @@ public class CadCliente extends javax.swing.JInternalFrame {
                         .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(20, 20, 20)
-                        .addComponent(cidade1, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cidade, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(30, 30, 30)
                         .addComponent(estadoCb, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(30, 30, 30)
@@ -232,7 +233,7 @@ public class CadCliente extends javax.swing.JInternalFrame {
                     .addComponent(jLabel6))
                 .addGap(5, 5, 5)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cidade1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cidade, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(estadoCb, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(telefoneField, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20)
@@ -261,7 +262,7 @@ public class CadCliente extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_telefoneFieldActionPerformed
 
     private void cpfFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cpfFieldKeyReleased
-        Cad.setEnabled(valida.HabilitaCadastro(nomeField.getText() , cpfField));// TODO add your handling code here:
+        Cad.setEnabled(valida.HabilitaCadastro(nomeField.getText(), cpfField));// TODO add your handling code here:
     }//GEN-LAST:event_cpfFieldKeyReleased
 
     private void nomeFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nomeFieldKeyReleased
@@ -269,12 +270,12 @@ public class CadCliente extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_nomeFieldKeyReleased
 
     private void inserirCliente() {
-        
+
         clientes.add(new Cliente());
         clientes.get(count).setNome(nomeField.getText());
         clientes.get(count).setCpf(cpfField.getText().replaceAll("[^0-9]+", ""));
         clientes.get(count).setEstado(String.valueOf(estadoCb.getSelectedItem()));
-        clientes.get(count).setCidade(descontoField.getText());
+        clientes.get(count).setCidade(cidade.getText());
         clientes.get(count).setEndereco(enderecoField.getText());
         clientes.get(count).setTelefone(telefoneField.getText().replaceAll("[^0-9]+", ""));
         clientes.get(count).descricao = descricaoTA.getText();
@@ -282,16 +283,24 @@ public class CadCliente extends javax.swing.JInternalFrame {
         clientes.get(count).setEmail(emailField.getText());
         count++;
 
-        vaiCaralho.clientes = this.clientes;
+        tP.clientes = this.clientes;
     }
 
 
     private void CadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CadActionPerformed
         if (valida.isCPF(cpfField.getText().replaceAll("[^0-9]+", "")) == true) {
             inserirCliente();
+            cidade.setText(null);
+            descricaoTA.setText(null);
+            cpfField.setText(null);
+            nomeField.setText(null);
+            emailField.setText(null);
+            enderecoField.setText(null);
+            telefoneField.setText(null);
+            descontoField.setText(null);
 
         } else {
-            JOptionPane.showMessageDialog(null, "CNPJ invalido", "ERRO", 0);
+            JOptionPane.showMessageDialog(null, "Cpf invalido", "ERRO", 0);
         }
     }//GEN-LAST:event_CadActionPerformed
 
@@ -299,14 +308,14 @@ public class CadCliente extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_descontoFieldActionPerformed
 
-    private void cidade1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cidade1ActionPerformed
+    private void cidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cidadeActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_cidade1ActionPerformed
+    }//GEN-LAST:event_cidadeActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Cad;
-    private javax.swing.JTextField cidade1;
+    private javax.swing.JTextField cidade;
     private javax.swing.JFormattedTextField cpfField;
     private javax.swing.JTextField descontoField;
     private javax.swing.JTextArea descricaoTA;

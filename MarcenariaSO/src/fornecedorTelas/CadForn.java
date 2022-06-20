@@ -30,6 +30,7 @@ public class CadForn extends javax.swing.JInternalFrame {
         vaiCaralho = teste3;
         vaiCaralho.teste = "deu bom";
         fornecedores = forn;
+        count = fornecedores.size();
     }
 
     /**
@@ -45,7 +46,7 @@ public class CadForn extends javax.swing.JInternalFrame {
         telefoneField = new javax.swing.JFormattedTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        email = new javax.swing.JTextField();
+        emailField = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         cnpjField = new javax.swing.JFormattedTextField();
         estadoCb = new javax.swing.JComboBox<>();
@@ -94,7 +95,7 @@ public class CadForn extends javax.swing.JInternalFrame {
         jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel8.setText("Estado:");
 
-        email.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        emailField.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel4.setText("Descrição");
@@ -183,7 +184,7 @@ public class CadForn extends javax.swing.JInternalFrame {
                         .addComponent(jLabel8))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(20, 20, 20)
-                        .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(emailField, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(30, 30, 30)
                         .addComponent(cidade, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(30, 30, 30)
@@ -223,7 +224,7 @@ public class CadForn extends javax.swing.JInternalFrame {
                     .addComponent(jLabel8))
                 .addGap(5, 5, 5)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(emailField, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cidade, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(estadoCb, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(10, 10, 10)
@@ -257,27 +258,33 @@ public class CadForn extends javax.swing.JInternalFrame {
     private void nomeFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nomeFieldKeyReleased
         Cad.setEnabled(valida.HabilitaCadastro(nomeField.getText(), inscEField, cnpjField));  // TODO add your handling code here:
     }//GEN-LAST:event_nomeFieldKeyReleased
-    
-    
+
     private void inserirFornecedor() {
         fornecedores.add(new Fornecedor());
-        fornecedores.get(count).setNome(nomeField.getText()); 
+        fornecedores.get(count).setNome(nomeField.getText());
         fornecedores.get(count).cnpj = cnpjField.getText().replaceAll("[^0-9]+", "");
         fornecedores.get(count).setEstado(String.valueOf(estadoCb.getSelectedItem()));
         fornecedores.get(count).setCidade(cidade.getText());
-        fornecedores.get(count).setEmail(email.getText());
+        fornecedores.get(count).setEmail(emailField.getText());
         fornecedores.get(count).inscE = inscEField.getText().replaceAll("[^0-9]+", "");
         fornecedores.get(count).setTelefone(telefoneField.getText().replaceAll("[^0-9]+", ""));
         fornecedores.get(count).descricao = descricaoTA.getText();
-        count ++;
-        
+        count++;
+
         vaiCaralho.fornecedores = this.fornecedores;
     }
-    
-    
+
+
     private void CadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CadActionPerformed
         if (valida.validaCNPJ(cnpjField.getText().replaceAll("[^0-9]+", "")) == true) {
             inserirFornecedor();
+            cidade.setText(null);
+            descricaoTA.setText(null);
+            cnpjField.setText(null);
+            nomeField.setText(null);
+            emailField.setText(null);
+            telefoneField.setText(null);
+            inscEField.setText(null);
 
         } else {
             JOptionPane.showMessageDialog(null, "CNPJ invalido", "ERRO", 0);
@@ -290,7 +297,7 @@ public class CadForn extends javax.swing.JInternalFrame {
     private javax.swing.JTextField cidade;
     private javax.swing.JFormattedTextField cnpjField;
     private javax.swing.JTextArea descricaoTA;
-    private javax.swing.JTextField email;
+    private javax.swing.JTextField emailField;
     private javax.swing.JComboBox<String> estadoCb;
     private javax.swing.JFormattedTextField inscEField;
     private javax.swing.JLabel jLabel1;

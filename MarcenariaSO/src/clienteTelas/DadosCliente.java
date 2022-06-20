@@ -7,6 +7,7 @@ package clienteTelas;
 
 import Principal.TelaPrincipal;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import pessoa.Cliente;
 
 /**
@@ -19,18 +20,19 @@ public class DadosCliente extends javax.swing.JInternalFrame {
      * Creates new form DadosClien
      */
     ArrayList<Cliente> clientes = new ArrayList<Cliente>();
+    TelaPrincipal tP;
 
     public DadosCliente(TelaPrincipal vai, ArrayList<Cliente> cliente) {
         initComponents();
+        tP = vai;
         clientes = cliente;
+
         pegaC();
     }
 
     public void pegaC() {
-
         clien.addItem(" ");
         for (int i = 0; i < clientes.size(); i++) {
-
             clien.addItem(clientes.get(i).getNome());
         }
 
@@ -40,7 +42,7 @@ public class DadosCliente extends javax.swing.JInternalFrame {
         for (int i = 0; i < clientes.size(); i++) {
             if (clientes.get(i).getNome().equals(String.valueOf(clien.getSelectedItem()))) {
 
-                edtNome.setText(clientes.get(i).getNome());
+                nomeField.setText(clientes.get(i).getNome());
                 cpfField.setText(clientes.get(i).getCpf().replaceAll("[^0-9]+", ""));
                 emailField.setText(clientes.get(i).getEmail());
                 telefoneField.setText(clientes.get(i).getTelefone().replaceAll("[^0-9]+", ""));
@@ -52,6 +54,57 @@ public class DadosCliente extends javax.swing.JInternalFrame {
                 i = clientes.size();
             }
 
+        }
+
+    }
+
+    private void atualizaCliente() {
+
+        clientes.get(clien.getSelectedIndex()-1).setNome(nomeField.getText());
+        clientes.get(clien.getSelectedIndex()-1).setCpf(cpfField.getText().replaceAll("[^0-9]+", ""));
+        clientes.get(clien.getSelectedIndex()-1).setEstado(estadoField.getText());
+        clientes.get(clien.getSelectedIndex()-1).setCidade(cidadeField.getText());
+        clientes.get(clien.getSelectedIndex()-1).setEndereco(enderecoField.getText());
+        clientes.get(clien.getSelectedIndex()-1).setTelefone(telefoneField.getText().replaceAll("[^0-9]+", ""));
+        clientes.get(clien.getSelectedIndex()-1).descricao = descricaoTA.getText();
+        clientes.get(clien.getSelectedIndex()-1).desconto = Float.parseFloat(descontoField.getText());
+        clientes.get(clien.getSelectedIndex()-1).setEmail(emailField.getText());
+        tP.clientes = this.clientes;
+    }
+
+    public void deletaCliente() {
+        clientes.remove(clien.getSelectedIndex() - 1);
+        tP.clientes = this.clientes;
+    }
+
+    public void ConfirmaDC() {
+        int resultado = JOptionPane.showConfirmDialog(null, "Deseja Deletar todos os Dados do Fornecedor?", "Confirmação", JOptionPane.YES_NO_OPTION);
+
+        if (resultado == JOptionPane.YES_OPTION) {
+            deletaCliente();
+            clien.removeAllItems();
+            pegaC();
+            telaC.setVisible(false);
+
+        } else {
+            // tabela.setValueAt()
+        }
+
+    }
+
+    public void ConfirmaAC() {
+        int resultado = JOptionPane.showConfirmDialog(null, "Deseja Alterar os Dados do Cliente?", "Confirmação", JOptionPane.YES_NO_OPTION);
+
+
+        if (resultado == JOptionPane.YES_OPTION) {
+            atualizaCliente();
+            clien.removeAllItems();
+            pegaC();
+
+            clien.setSelectedItem(nomeField.getText());
+
+        } else {
+            // tabela.setValueAt()
         }
 
     }
@@ -69,7 +122,7 @@ public class DadosCliente extends javax.swing.JInternalFrame {
         clien = new javax.swing.JComboBox<>();
         telaC = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        edtNome = new javax.swing.JTextField();
+        nomeField = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         descricaoTA = new javax.swing.JTextArea();
@@ -110,7 +163,7 @@ public class DadosCliente extends javax.swing.JInternalFrame {
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel4.setText("Descrição");
         telaC.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, -1, -1));
-        telaC.add(edtNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 250, 35));
+        telaC.add(nomeField, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 250, 35));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel2.setText("Nome");
@@ -237,11 +290,11 @@ public class DadosCliente extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_descontoFieldActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        ConfirmaDC();      // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void alteraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alteraActionPerformed
-
+        ConfirmaAC();
     }//GEN-LAST:event_alteraActionPerformed
 
     private void telefoneFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_telefoneFieldActionPerformed
@@ -260,7 +313,6 @@ public class DadosCliente extends javax.swing.JInternalFrame {
     private javax.swing.JFormattedTextField cpfField;
     private javax.swing.JTextField descontoField;
     private javax.swing.JTextArea descricaoTA;
-    private javax.swing.JTextField edtNome;
     private javax.swing.JTextField emailField;
     private javax.swing.JTextField enderecoField;
     private javax.swing.JTextField estadoField;
@@ -276,6 +328,7 @@ public class DadosCliente extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField nomeField;
     private javax.swing.JPanel telaC;
     private javax.swing.JFormattedTextField telefoneField;
     // End of variables declaration//GEN-END:variables

@@ -41,7 +41,7 @@ public class VendaTela extends javax.swing.JInternalFrame {
         materiasP = mP;
 
         AdicionaTabela();
-        contador = tabela.getRowCount();
+        contador = vendas.size();
 
         pegaMov();
         pegaC();

@@ -7,6 +7,7 @@ package fornecedorTelas;
 
 import Principal.TelaPrincipal;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import pessoa.Fornecedor;
 
 /**
@@ -26,7 +27,7 @@ public class DadosFornecedor extends javax.swing.JInternalFrame {
         initComponents();
         this.tP = tP;
         fornecedores = forn;
-        
+
         pr.setVisible(true);
         mptela.setVisible(true);
 
@@ -45,10 +46,11 @@ public class DadosFornecedor extends javax.swing.JInternalFrame {
     }
 
     public void pegaDados() {
+
         for (int i = 0; i < fornecedores.size(); i++) {
             if (fornecedores.get(i).getNome().equals(String.valueOf(cbFornecedor.getSelectedItem()))) {
 
-                edtNome.setText(fornecedores.get(i).getNome());
+                nomeField.setText(fornecedores.get(i).getNome());
                 cnpjField.setText(fornecedores.get(i).cnpj.replaceAll("[^0-9]+", ""));
                 emailField.setText(fornecedores.get(i).getEmail());
                 telefoneField.setText(fornecedores.get(i).getTelefone().replaceAll("[^0-9]+", ""));
@@ -57,15 +59,20 @@ public class DadosFornecedor extends javax.swing.JInternalFrame {
                 inscEField.setText(fornecedores.get(i).inscE);
                 descricaoTA.setText(fornecedores.get(i).descricao);
 
-                mpCombo.removeAllItems();
-                mpCombo.addItem(" ");
-                for (int j = 0; j < fornecedores.get(i).nomeMP.size(); j++) {
-                    mpCombo.addItem(fornecedores.get(i).nomeMP.get(j));
-                }
+                comboMP();
 
                 i = fornecedores.size();
             }
 
+        }
+
+    }
+
+    public void comboMP() {
+        mpCombo.removeAllItems();
+        mpCombo.addItem(" ");
+        for (int j = 0; j < fornecedores.get(cbFornecedor.getSelectedIndex() - 1).nomeMP.size(); j++) {
+            mpCombo.addItem(fornecedores.get(cbFornecedor.getSelectedIndex() - 1).nomeMP.get(j));
         }
 
     }
@@ -77,6 +84,100 @@ public class DadosFornecedor extends javax.swing.JInternalFrame {
                 mpPreco.setText(fornecedores.get(cbFornecedor.getSelectedIndex() - 1).precoF.get(i));
                 mpFrete.setText(fornecedores.get(cbFornecedor.getSelectedIndex() - 1).frete.get(i));
             }
+        }
+
+    }
+
+    private void atualizaFornecedor() {
+
+        fornecedores.get(cbFornecedor.getSelectedIndex() - 1).setNome(nomeField.getText());
+        fornecedores.get(cbFornecedor.getSelectedIndex() - 1).cnpj = cnpjField.getText().replaceAll("[^0-9]+", "");
+        fornecedores.get(cbFornecedor.getSelectedIndex() - 1).setEstado(estadoField.getText());
+        fornecedores.get(cbFornecedor.getSelectedIndex() - 1).setCidade(cidadeField.getText());
+        fornecedores.get(cbFornecedor.getSelectedIndex() - 1).setTelefone(telefoneField.getText().replaceAll("[^0-9]+", ""));
+        fornecedores.get(cbFornecedor.getSelectedIndex() - 1).descricao = descricaoTA.getText();
+        fornecedores.get(cbFornecedor.getSelectedIndex() - 1).inscE = inscEField.getText().replaceAll("[^0-9]+", "");
+        fornecedores.get(cbFornecedor.getSelectedIndex() - 1).setEmail(emailField.getText());
+        tP.fornecedores = this.fornecedores;
+    }
+
+    public void atualizaFMP() {
+        fornecedores.get(cbFornecedor.getSelectedIndex() - 1).nomeMP.set(mpCombo.getSelectedIndex() - 1, mpNome.getText());
+        fornecedores.get(cbFornecedor.getSelectedIndex() - 1).precoF.set(mpCombo.getSelectedIndex() - 1, mpPreco.getText());
+        fornecedores.get(cbFornecedor.getSelectedIndex() - 1).frete.set(mpCombo.getSelectedIndex() - 1, mpFrete.getText());
+        tP.fornecedores = this.fornecedores;
+    }
+
+    public void deletaFMP() {
+        fornecedores.get(cbFornecedor.getSelectedIndex() - 1).nomeMP.remove(mpCombo.getSelectedIndex() - 1);
+        fornecedores.get(cbFornecedor.getSelectedIndex() - 1).precoF.remove(mpCombo.getSelectedIndex() - 1);
+        fornecedores.get(cbFornecedor.getSelectedIndex() - 1).frete.remove(mpCombo.getSelectedIndex() - 1);
+        tP.fornecedores = this.fornecedores;
+    }
+
+    public void deletaFornecedor() {
+        fornecedores.remove(cbFornecedor.getSelectedIndex() - 1);
+        tP.fornecedores = this.fornecedores;
+    }
+
+    public void ConfirmaDF() {
+        int resultado = JOptionPane.showConfirmDialog(null, "Deseja Deletar todos os Dados do Fornecedor?", "Confirmação", JOptionPane.YES_NO_OPTION);
+
+        if (resultado == JOptionPane.YES_OPTION) {
+            deletaFornecedor();
+            cbFornecedor.removeAllItems();
+            pegaF();
+            pr.setVisible(false);
+
+        } else {
+            // tabela.setValueAt()
+        }
+
+    }
+
+    public void ConfirmaAF() {
+        int resultado = JOptionPane.showConfirmDialog(null, "Deseja Alterar os Dados do Fornecedor?", "Confirmação", JOptionPane.YES_NO_OPTION);
+
+        if (resultado == JOptionPane.YES_OPTION) {
+            atualizaFornecedor();
+            cbFornecedor.removeAllItems();
+            pegaF();
+
+            cbFornecedor.setSelectedItem(nomeField.getText());
+
+        } else {
+            // tabela.setValueAt()
+        }
+
+    }
+
+    public void ConfirmaDFMP() {
+        int resultado = JOptionPane.showConfirmDialog(null, "Deseja Deletar os Dados do Produto?", "Confirmação", JOptionPane.YES_NO_OPTION);
+
+        if (resultado == JOptionPane.YES_OPTION) {
+            deletaFMP();
+            mpCombo.removeAllItems();
+            comboMP();
+            mptela.setVisible(false);
+
+        } else {
+            // tabela.setValueAt()
+        }
+
+    }
+
+    public void ConfirmaAFMP() {
+        int resultado = JOptionPane.showConfirmDialog(null, "Deseja Alterar os Dados do Produto?", "Confirmação", JOptionPane.YES_NO_OPTION);
+
+        if (resultado == JOptionPane.YES_OPTION) {
+            atualizaFMP();
+            mpCombo.removeAllItems();
+            comboMP();
+
+            mpCombo.setSelectedItem(mpNome.getText());
+
+        } else {
+            // tabela.setValueAt()
         }
 
     }
@@ -104,7 +205,7 @@ public class DadosFornecedor extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        edtNome = new javax.swing.JFormattedTextField();
+        nomeField = new javax.swing.JFormattedTextField();
         jLabel7 = new javax.swing.JLabel();
         cnpjField = new javax.swing.JFormattedTextField();
         inscEField = new javax.swing.JFormattedTextField();
@@ -180,13 +281,13 @@ public class DadosFornecedor extends javax.swing.JInternalFrame {
         jLabel3.setText("CNPJ:");
         pr.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 0, 67, -1));
 
-        edtNome.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        edtNome.addActionListener(new java.awt.event.ActionListener() {
+        nomeField.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        nomeField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                edtNomeActionPerformed(evt);
+                nomeFieldActionPerformed(evt);
             }
         });
-        pr.add(edtNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 230, 35));
+        pr.add(nomeField, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 230, 35));
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel7.setText("Cidade:");
@@ -241,9 +342,19 @@ public class DadosFornecedor extends javax.swing.JInternalFrame {
         mptela.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, -1, -1));
 
         jButton1.setText("Alterar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         mptela.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, -1, 30));
 
         jButton2.setText("Deletar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         mptela.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 200, -1, 30));
 
         mpFrete.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -283,6 +394,11 @@ public class DadosFornecedor extends javax.swing.JInternalFrame {
 
         jButton4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jButton4.setText("Deletar Fornecedor");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
         pr.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 260, -1, 30));
 
         getContentPane().add(pr, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 790, 300));
@@ -290,9 +406,9 @@ public class DadosFornecedor extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void edtNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edtNomeActionPerformed
+    private void nomeFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nomeFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_edtNomeActionPerformed
+    }//GEN-LAST:event_nomeFieldActionPerformed
 
     private void mpFreteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mpFreteActionPerformed
         // TODO add your handling code here:
@@ -307,7 +423,7 @@ public class DadosFornecedor extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_mpPrecoActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+        ConfirmaAF();     // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void mpComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mpComboActionPerformed
@@ -320,19 +436,31 @@ public class DadosFornecedor extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_mpComboActionPerformed
 
     private void cbFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbFornecedorActionPerformed
-          if (!" ".equals(String.valueOf(cbFornecedor.getSelectedItem()))) {
+        if (!" ".equals(String.valueOf(cbFornecedor.getSelectedItem()))) {
 
             pr.setVisible(true);
             mptela.setVisible(true);
-            
+
             pegaDados();
-            
+
         } else {
             mptela.setVisible(false);
             pr.setVisible(false);
-           
+
         }
     }//GEN-LAST:event_cbFornecedorActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        ConfirmaDF();     // TODO add your handling code here:
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        ConfirmaAFMP(); // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        ConfirmaDFMP();        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -340,7 +468,6 @@ public class DadosFornecedor extends javax.swing.JInternalFrame {
     private javax.swing.JTextField cidadeField;
     private javax.swing.JFormattedTextField cnpjField;
     private javax.swing.JTextArea descricaoTA;
-    private javax.swing.JFormattedTextField edtNome;
     private javax.swing.JTextField emailField;
     private javax.swing.JTextField estadoField;
     private javax.swing.JFormattedTextField inscEField;
@@ -366,6 +493,7 @@ public class DadosFornecedor extends javax.swing.JInternalFrame {
     private javax.swing.JFormattedTextField mpNome;
     private javax.swing.JFormattedTextField mpPreco;
     private javax.swing.JPanel mptela;
+    private javax.swing.JFormattedTextField nomeField;
     private javax.swing.JPanel pr;
     private javax.swing.JFormattedTextField telefoneField;
     // End of variables declaration//GEN-END:variables
