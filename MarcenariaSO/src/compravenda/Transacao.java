@@ -19,9 +19,7 @@ public abstract class Transacao {
 
     public abstract void CalculaPrecoT(int qtd, String item, String pessoa);
 
-    public void CalculaPrecoT(int qtd, String pessoa){
-        
-    }
+    public abstract void CalculaPrecoT(int qtd, String pessoa);
     
     public float getPrecoBruto(){
         return precoBruto;

@@ -46,6 +46,7 @@ public class DadosMovel extends javax.swing.JInternalFrame {
     }
 
     public void pegaDados() {
+
         for (int i = 0; i < moveis.size(); i++) {
             if (String.valueOf(movCombo.getSelectedItem()).equals(moveis.get(i).nome)) {
                 nomeMovField.setText(moveis.get(i).nome);
@@ -55,25 +56,24 @@ public class DadosMovel extends javax.swing.JInternalFrame {
                     ((DefaultTableModel) tabela.getModel()).setRowCount(rowCount);
                     tabela.setValueAt(moveis.get(i).materiaP.get(j), rowCount - 1, 0);
                     tabela.setValueAt(moveis.get(i).qtd.get(j), rowCount - 1, 1);
-                    tabela.setValueAt(moveis.get(i).qtd.get(j) * pegaPrecoUnit(i,j), rowCount - 1, 2);
+                    tabela.setValueAt(moveis.get(i).qtd.get(j) * pegaPrecoUnit(i, j), rowCount - 1, 2);
                 }
 
             }
         }
 
     }
-    
-    public float pegaPrecoUnit(int posicao, int posicao2){
+
+    public float pegaPrecoUnit(int posicao, int posicao2) {
         float valorUnit = 0;
-        for(int i = 0; i < materiasP.size(); i++){
-            if(materiasP.get(i).nome.equals(moveis.get(posicao).materiaP.get(posicao2))){
+        for (int i = 0; i < materiasP.size(); i++) {
+            if (materiasP.get(i).nome.equals(moveis.get(posicao).materiaP.get(posicao2))) {
                 valorUnit = materiasP.get(i).precoUnit;
             }
         }
-        
+
         return valorUnit;
-        
-        
+
     }
 
     public void calculaCustoTotal() {
@@ -82,6 +82,57 @@ public class DadosMovel extends javax.swing.JInternalFrame {
             custo = custo + Float.parseFloat(String.valueOf(tabela.getValueAt(i, 2)));
         }
         custoTotal.setText(String.valueOf(custo));
+    }
+
+    public void atualizaMovel() {
+        moveis.get(movCombo.getSelectedIndex() - 1).nome = nomeMovField.getText();
+        for (int i = 0; i < tabela.getRowCount(); i++) {
+            moveis.get(movCombo.getSelectedIndex() - 1).materiaP.set(i, String.valueOf(tabela.getValueAt(i, 0)));
+            moveis.get(movCombo.getSelectedIndex() - 1).qtd.set(i, Integer.parseInt(String.valueOf(tabela.getValueAt(i, 1))));
+        }
+        calculaCustoTotal();
+        moveis.get(movCombo.getSelectedIndex() - 1).custoDeProducao = Float.parseFloat(custoTotal.getText());
+
+        tP.moveis = this.moveis;
+
+    }
+
+    public void deletaMovel() {
+        moveis.remove(movCombo.getSelectedIndex() - 1);
+        tP.moveis = this.moveis;
+    }
+
+    public void ConfirmaDM() {
+        int resultado = JOptionPane.showConfirmDialog(null, "Deseja Deletar todos os Dados do Móvel?", "Confirmação", JOptionPane.YES_NO_OPTION);
+
+        if (resultado == JOptionPane.YES_OPTION) {
+            deletaMovel();
+            movCombo.removeAllItems();
+            pegaMP();
+            pr.setVisible(false);
+
+        } else {
+            // tabela.setValueAt()
+        }
+
+    }
+
+    public void ConfirmaAM() {
+        int resultado = JOptionPane.showConfirmDialog(null, "Deseja Alterar os Dados do Móvel?", "Confirmação", JOptionPane.YES_NO_OPTION);
+
+        if (resultado == JOptionPane.YES_OPTION) {
+            atualizaMovel();
+            movCombo.removeAllItems();
+            pegaMP();
+            movCombo.setSelectedItem(nomeMovField.getText());
+            ((DefaultTableModel) tabela.getModel()).setRowCount(0);
+            rowCount = 0;
+            pegaDados();
+
+        } else {
+            // tabela.setValueAt()
+        }
+
     }
 
     /**
@@ -206,6 +257,8 @@ public class DadosMovel extends javax.swing.JInternalFrame {
 
     private void movComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_movComboActionPerformed
         if (!" ".equals(String.valueOf(movCombo.getSelectedItem()))) {
+            rowCount = 0;
+            ((DefaultTableModel) tabela.getModel()).setRowCount(0);
             pr.setVisible(true);
             pegaDados();
             calculaCustoTotal();
@@ -215,11 +268,11 @@ public class DadosMovel extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_movComboActionPerformed
 
     private void delActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delActionPerformed
-
+        ConfirmaDM();
     }//GEN-LAST:event_delActionPerformed
 
     private void altActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_altActionPerformed
-
+        ConfirmaAM();
     }//GEN-LAST:event_altActionPerformed
 
 

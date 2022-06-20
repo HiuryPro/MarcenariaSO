@@ -80,8 +80,11 @@ public class CadMov extends javax.swing.JInternalFrame {
         int resultado = JOptionPane.showConfirmDialog(null, "Deseja Cadastrar", "Confirmação", JOptionPane.YES_NO_OPTION);
 
         if (resultado == JOptionPane.YES_OPTION) {
+
+            rowCount = 0;
             salvaMovel();
             tP.moveis = this.moveis;
+            ((DefaultTableModel) tabela.getModel()).setRowCount(0);
 
         } else {
 

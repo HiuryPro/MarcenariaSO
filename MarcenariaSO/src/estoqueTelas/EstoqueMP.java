@@ -8,6 +8,7 @@ package estoqueTelas;
 import Principal.TelaPrincipal;
 import compravenda.Materia_Prima;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -37,24 +38,68 @@ public class EstoqueMP extends javax.swing.JInternalFrame {
         }
 
     }
-    
-    public void pegaDados(){
-        
-         for (int i = 0; i < materiasP.size(); i++) {
-           if(String.valueOf(mPCombo.getSelectedItem()).equals(materiasP.get(i).nome)){
-               nomeMPField.setText(materiasP.get(i).nome);
-               quantMPField.setText(String.valueOf(materiasP.get(i).quantEstoque));
-               descricaoMPField.setText(materiasP.get(i).descricao);
-               precoMPField.setText(String.valueOf(materiasP.get(i).precoUnit));
-               
-               i = materiasP.size();
-           }
-               
+
+    public void pegaDados() {
+
+        for (int i = 0; i < materiasP.size(); i++) {
+            if (String.valueOf(mPCombo.getSelectedItem()).equals(materiasP.get(i).nome)) {
+                nomeMPField.setText(materiasP.get(i).nome);
+                quantMPField.setText(String.valueOf(materiasP.get(i).quantEstoque));
+                descricaoMPField.setText(materiasP.get(i).descricao);
+                precoMPField.setText(String.valueOf(materiasP.get(i).precoUnit));
+
+                i = materiasP.size();
+            }
+
         }
-        
+
     }
-    
-    
+
+    public void atualizaMP() {
+
+        materiasP.get(mPCombo.getSelectedIndex() - 1).nome = nomeMPField.getText();
+        materiasP.get(mPCombo.getSelectedIndex() - 1).precoUnit = Float.parseFloat(precoMPField.getText());
+        materiasP.get(mPCombo.getSelectedIndex() - 1).quantEstoque = Integer.parseInt(quantMPField.getText());
+        materiasP.get(mPCombo.getSelectedIndex() - 1).descricao = descricaoMPField.getText();
+        tp.materiasprimas = this.materiasP;
+    }
+
+    public void deletaMP() {
+        materiasP.remove(mPCombo.getSelectedIndex() - 1);
+        tp.materiasprimas = this.materiasP;
+    }
+
+    public void ConfirmaDMP() {
+        int resultado = JOptionPane.showConfirmDialog(null, "Deseja Deletar todos os Dados da Matéria Prima?", "Confirmação", JOptionPane.YES_NO_OPTION);
+
+        if (resultado == JOptionPane.YES_OPTION) {
+            deletaMP();
+            mPCombo.removeAllItems();
+            pegaMP();
+            pr.setVisible(false);
+
+        } else {
+            // tabela.setValueAt()
+        }
+
+    }
+
+    public void ConfirmaAMP() {
+        int resultado = JOptionPane.showConfirmDialog(null, "Deseja Alterar os Dados da Matéria Prima?", "Confirmação", JOptionPane.YES_NO_OPTION);
+
+        if (resultado == JOptionPane.YES_OPTION) {
+            atualizaMP();
+            mPCombo.removeAllItems();
+            pegaMP();
+
+            mPCombo.setSelectedItem(nomeMPField.getText());
+
+        } else {
+            // tabela.setValueAt()
+        }
+
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -132,6 +177,12 @@ public class EstoqueMP extends javax.swing.JInternalFrame {
         jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel10.setText("Preço unitario (MP)");
         pr.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 10, -1, -1));
+
+        precoMPField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                precoMPFieldActionPerformed(evt);
+            }
+        });
         pr.add(precoMPField, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 40, 150, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -179,12 +230,16 @@ public class EstoqueMP extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_quantMPFieldActionPerformed
 
     private void delActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delActionPerformed
-
+        ConfirmaDMP();
     }//GEN-LAST:event_delActionPerformed
 
     private void altActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_altActionPerformed
-
+        ConfirmaAMP();
     }//GEN-LAST:event_altActionPerformed
+
+    private void precoMPFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_precoMPFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_precoMPFieldActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
